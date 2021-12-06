@@ -1,0 +1,15 @@
+{
+    "municipio": "Tupã",
+    "ano": "2022",
+    "respostas": {
+        "a1": "estudo atualizado dos ultimos dois anos realizado por equipe especializada",
+        "a2": "Preenchimento realizado e atualizado nos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo",
+        "a31": "Sim",
+        "a32": "Sim",
+        "a33": "Não"
+    },
+    "pleitos":{
+        "1":{"situacao":"obra finalizada",
+            "tipo":"Infraestrutura turística"}
+    }
+}

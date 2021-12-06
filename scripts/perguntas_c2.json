@@ -1,0 +1,64 @@
+[  {"cabecalho":"C.2 A Estância esta inserida no Mapa Brasileiro do Turismo do Ministério do Turismo",
+    "info":"info",
+    "codigo":"c2", 
+    "opcoes":[
+      { "value": "Sim", "file": true },
+      { "value": "Não", "file": false }
+    ]},
+    {"cabecalho":"C.3 Os últimos pleito apresentados tem contexto de participação de pleito regional?",
+      "info":"info",
+      "codigo":"c3", 
+      "opcoes":[
+        { "value": "Sim", "file": true },
+        { "value": "Não", "file": false }
+      ]},
+      {"cabecalho":"C.4 A estância apresenta incentivos e investimentos turísticos",
+        "info":"info",
+        "codigo":"c4", 
+        "opcoes":[
+          { "value": "Sim", "file": true },
+          { "value": "Não", "file": false }
+        ]},
+        {"cabecalho":"C.5 A estância participou de capacitação turística nos ultimos 2 anos?",
+          "info":"info",
+          "codigo":"c5", 
+          "opcoes":[
+            { "value": "Sim", "file": true },
+            { "value": "Não", "file": false }
+          ]},
+          {"cabecalho":"C.6 A estância participou da capacitação de convênios realizado pela Secretaria de Estado de Turismo?",
+            "info":"info",
+            "codigo":"c6", 
+            "opcoes":[
+              { "value": "Sim", "file": true },
+              { "value": "Não", "file": false }
+            ]},
+      {"cabecalho":"C.7 A estância participou da capacitação de gestão de convênios realizado pela Secretaria de Estado de Turismo?",
+        "info":"info",
+        "codigo":"c7", 
+        "opcoes":[
+          { "value": "Sim", "file": true },
+          { "value": "Não", "file": false }
+        ]},
+        {"cabecalho":"C.8 A estância possui programa de Turismo educacional?",
+          "info":"info",
+          "codigo":"c8", 
+          "opcoes":[
+            { "value": "Sim", "file": true },
+            { "value": "Não", "file": false }
+          ]},
+          {"cabecalho":"C.9 A estância possui programa de Marketing turístico",
+            "info":"info",
+            "codigo":"c9", 
+            "opcoes":[
+              { "value": "Sim", "file": true },
+              { "value": "Não", "file": false }
+            ]},
+        {"cabecalho":"A estância possui pesquisa de satisfação dos pleitos nos últimos três anos?",
+          "info":"info",
+          "codigo":"c10", 
+          "opcoes":[
+            { "value": "Sim", "file": true },
+            { "value": "Não", "file": false }
+          ]}
+]

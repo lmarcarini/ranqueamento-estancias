@@ -1,0 +1,51 @@
+{
+    "ano": "2022",
+    "respostas": {
+        "a1": {
+            "estudo atualizado dos ultimos dois anos realizado por equipe especializada": 8.3,
+            "estudo atualizado dos ultimos dois anos realizado por equipe da prefeitura": 6.3,
+            "estudo atualizado dos ultimos tres a cinco anos realizado por equipe especializada": 5.3,
+            "estudo atualizado dos ultimos tres a cinco anos realizado por equipe da prefeitura": 4.3,
+            "estudo atualizado há mais de cinco anos realizado por equipe especializada": 3.3,
+            "estudo atualizado há mais de cinco anos realizado por equipe da prefeitura": 2.3,
+            "não tem estudo de demanda turística": 0
+        },
+        "a2": {
+            "Preenchimento realizado e atualizado nos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo": 8.3,
+            "Preenchimento realizado anterior aos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo": 4.3
+        },
+        "a31":{"Sim":2.8,"Não":0},
+        "a32":{"Sim":2.8,"Não":0},
+        "a33":{"Sim":2.8,"Não":0},
+        "a41":{"Plano diretor realizado nos ultimos cinco anos":7.3,
+        "Plano diretor realizado nos ultimos dez anos":5.3,
+        "Plano diretor realizado nos ultimos quinze anos":3.3,
+        "Não tem Plano diretor":0},
+        "a42":{"Sim":1,"Não":0},
+        "c11":{"Sim":2,"Não":0.5},
+        "c12":{"Sim":1,"Não":0},
+        "c2":{"Sim":3,"Não":0},
+        "c3":{"Sim":3,"Não":2},
+        "c4":{"Sim":3,"Não":0},
+        "c5":{"Sim - Mais de 10 cursos":3,"Sim - Menos de 10 cursos":2,"Não":2},
+        "c6":{"Sim":3,"Não":0},
+        "c7":{"Sim":3,"Não":0},
+        "c8":{"Sim":3,"Não":0},
+        "c9":{"Sim":3.1,"Não":0},
+        "c10":{"Sim":3,"Não":0}
+    },
+    "pleitos":{
+        "situacao":{
+            "obra finalizada": 1,
+            "obra em andamento": 0.7,
+            "obra não iniciada": 0.3
+        },
+        "tipo":{
+            "Atrativo natural e/ou cultural":10.1,
+            "Infraestrutura turística": 8.1,
+            "Infraestrutura de apoio": 6.1,
+            "Infraestretura de acesso": 4.1,
+            "Infraestrutura básica urbana": 2.1
+        }
+    }
+}
