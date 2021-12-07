@@ -16,7 +16,23 @@ export default function form() {
 
   useEffect(() => {
     setscore(pontuacao(dados));
+    console.log(dados);
   }, [dados]);
+
+  const addPleito = (pleito) => {
+    setdados({
+      ...dados,
+      pleitos: {
+        ...dados.pleitos,
+        [pleito.id.slice(1)]: {
+          nome: pleito.querySelector("#nome").value,
+          valor: pleito.querySelector("#valor").value,
+          situacao: pleito.querySelector("#situacao").value,
+          tipo: pleito.querySelector("#tipo").value,
+        },
+      },
+    });
+  };
 
   const handleChange = (e) => {
     if (e.target.type === "radio")
@@ -24,6 +40,16 @@ export default function form() {
         ...dados,
         respostas: { ...dados.respostas, [e.target.name]: [e.target.value] },
       });
+    else {
+      let pleito = e.target.parentNode;
+      if (pleito.id.charAt(0) === "b") addPleito(pleito);
+    }
+  };
+
+  const excluirPleito = (id) => {
+    let copyDados = { ...dados };
+    delete copyDados.pleitos[id];
+    setdados(copyDados);
   };
 
   return (
@@ -34,7 +60,7 @@ export default function form() {
             <SectionA />
           </Tab>
           <Tab eventKey="sectionB" title="Pleitos">
-            <SectionB />
+            <SectionB excluirPleito={excluirPleito} />
           </Tab>
           <Tab eventKey="sectionC" title="Requisitos">
             <SectionC />
