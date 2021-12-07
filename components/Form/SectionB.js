@@ -4,15 +4,18 @@ import Button from "react-bootstrap/Button";
 
 export default (params) => {
   const [pleitos, setpleitos] = useState([]);
+  const [nPleitos, setnPleitos] = useState(0);
 
   const adicionarPleito = () => {
-    setpleitos([...pleitos, {}]);
+    setpleitos([...pleitos, { id: nPleitos }]);
+    setnPleitos(nPleitos + 1);
   };
 
   return (
     <>
       {pleitos.map(() => (
-        <>
+        <Form.Group className="mb-4" id={nPleitos}>
+          <h5>Pleito:</h5>
           <Form.Label>Nome do pleito:</Form.Label>
           <Form.Control type="text"></Form.Control>
           <Form.Label>Valor do pleito (R$):</Form.Label>
@@ -43,7 +46,7 @@ export default (params) => {
               Infraestrutura de apoio
             </option>
           </Form.Select>
-        </>
+        </Form.Group>
       ))}
 
       <Button onClick={adicionarPleito}>Adicionar novo pleito</Button>
