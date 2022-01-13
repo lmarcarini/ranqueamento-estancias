@@ -1,8 +1,8 @@
 import Head from "next/head";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from "../components/Layout";
 import { SSRProvider } from "@restart/ui/ssr";
-import { AuthUserProvider } from "../components/AuthenticationContext";
+import { AuthUserProvider } from "../contexts/AuthenticationContext";
+import Layout from "../layouts/Layout";
 
 function MyApp({ Component, pageProps }) {
   return (

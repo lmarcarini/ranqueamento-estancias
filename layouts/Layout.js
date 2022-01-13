@@ -1,4 +1,4 @@
-import TopMenu from "./TopMenu/TopMenu";
+import TopMenu from "../components/TopMenu/TopMenu";
 
 export default ({ children }) => (
   <>
