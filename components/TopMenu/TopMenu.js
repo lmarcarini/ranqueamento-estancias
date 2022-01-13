@@ -1,7 +1,7 @@
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import { useAuth } from "../AuthenticationContext";
+import { useAuth } from "../../contexts/AuthenticationContext";
 
 export default () => {
   const { authUser, userType, loading } = useAuth();
