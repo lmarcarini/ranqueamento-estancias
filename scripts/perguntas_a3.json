@@ -1,22 +1,22 @@
 [{"cabecalho":"A.3.1 Água potável",
     "info":"info",
-    "codigo":"a31", 
+    "codigo":"a3_1", 
     "opcoes":[
-    { "value": "Sim", "file": true },
-    { "value": "Não", "file": false }
+    { "value": "Sim", "file": true, "pontuacao": 2.8 },
+    { "value": "Não", "file": false, "pontuacao": 0 }
   ]},
   {"cabecalho":"A.3.2 Sistema de coleta e tratamento de esgotos",
     "info":"info",
-    "codigo":"a32", 
+    "codigo":"a3_2", 
     "opcoes":[
-      { "value": "Sim", "file": true },
-      { "value": "Não", "file": false }
+      { "value": "Sim", "file": true, "pontuacao": 2.8 },
+      { "value": "Não", "file": false, "pontuacao": 0 }
     ]},
     {"cabecalho":"A.3.3 Gestão de resíduos sólidos",
       "info":"info",
-      "codigo":"a33", 
+      "codigo":"a3_3", 
       "opcoes":[
-        { "value": "Sim", "file": true },
-        { "value": "Não", "file": false }
+        { "value": "Sim", "file": true, "pontuacao": 2.8 },
+        { "value": "Não", "file": false, "pontuacao": 0 }
       ]}
 ]

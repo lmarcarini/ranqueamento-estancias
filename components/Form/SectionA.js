@@ -1,4 +1,4 @@
-import PerguntaForm from "../../components/PerguntaForm.js";
+import PerguntaForm from "./PerguntaForm.js";
 import perguntas_a1 from "../../scripts/perguntas_a1.json";
 import perguntas_a3 from "../../scripts/perguntas_a3.json";
 import perguntas_a4 from "../../scripts/perguntas_a4.json";

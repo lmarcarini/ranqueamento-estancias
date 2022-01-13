@@ -1,0 +1,23 @@
+{
+    "municipio": "Tupã",
+    "ano": "2022",
+    "perguntas":
+    [{"id":"a1",
+        "cabecalho":"A.1 Estudo de demanda turística existente nos dois anos anteriores a apresentação dos dados",
+        "resposta":"estudo atualizado dos ultimos dois anos realizado por equipe da prefeitura",
+        "validacao": "false",
+        "pontos":"1",
+        "url": "link1.html"
+    },{"id":"a2",
+        "cabecalho":"A.2 Inventário turísticos dos ATRATIVOS, EQUIPAMENTOS E INFRA-ESTRUTURA dos municípios - plataforma da Secretaria de Estado de Turismo",
+        "resposta":"Preenchimento realizado anterior aos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo",
+        "validacao": "Preenchimento realizado anterior aos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo",
+        "justificativa": "Comprovante não condiz com a resposta.",
+        "pontos":"1",
+        "url": "link2.html"
+    }],
+    "pleitos":
+        [{"nome":"Obra da rua de baixo",
+        "situacao":"obra finalizada",
+        "tipo":"Infraestrutura turística"}]
+}

@@ -1,7 +1,6 @@
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import NavBar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import SectionA from "../components/Form/SectionA";
@@ -9,9 +8,18 @@ import SectionB from "../components/Form/SectionB";
 import SectionC from "../components/Form/SectionC";
 import { useEffect, useState } from "react";
 import pontuacao from "../scripts/pontuacao";
+import ConfirmacaodeEnvio from "../components/Form/ConfirmacaodeEnvio";
+
+const replacePergunta = (perguntas, id, newValue) => {
+  let i = perguntas.findIndex((data) => id === data.id);
+  if (i === -1) return [...perguntas, { id: id, resposta: newValue }];
+  return perguntas.map((data) =>
+    id === data.id ? { id: id, resposta: newValue } : data
+  );
+};
 
 export default function form() {
-  const [dados, setdados] = useState({ ano: 2020, respostas: {}, pleitos: {} });
+  const [dados, setdados] = useState({ ano: 2020, perguntas: [], pleitos: [] });
   const [score, setscore] = useState(0);
 
   useEffect(() => {
@@ -38,7 +46,11 @@ export default function form() {
     if (e.target.type === "radio")
       setdados({
         ...dados,
-        respostas: { ...dados.respostas, [e.target.name]: [e.target.value] },
+        perguntas: replacePergunta(
+          dados.perguntas,
+          e.target.name,
+          e.target.value
+        ),
       });
     else {
       let pleito = e.target.parentNode;
@@ -54,7 +66,7 @@ export default function form() {
 
   return (
     <Container style={{ paddingBottom: "70px" }}>
-      <Form onChange={handleChange}>
+      <Form onChange={handleChange} id="dados">
         <Tabs defaultActiveKey="sectionA" id="form">
           <Tab eventKey="sectionA" title="Atendimento à Legislação">
             <SectionA />
@@ -71,9 +83,7 @@ export default function form() {
             <Form.Label className="lead" style={{ color: "white" }}>
               Pontuação prévia: {score}/100
             </Form.Label>
-            <Button variant="primary" type="submit">
-              Enviar
-            </Button>
+            <ConfirmacaodeEnvio />
           </Container>
         </NavBar>
       </Form>

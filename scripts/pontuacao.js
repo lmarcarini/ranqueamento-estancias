@@ -1,15 +1,15 @@
 import gabarito from "../scripts/respostas.json";
 
-export default function pontuacao(doc) {
-  let score = 0;
-  score = Object.entries(gabarito.respostas).reduce(
-    (acc, arr) =>
-      acc + (gabarito.respostas[arr[0]][doc.respostas[arr[0]]] || 0),
-    0
-  );
-  score += Math.min(
+const scoreRespostas = (gabarito, perguntas) =>
+  gabarito.reduce((acc, [key, respostas]) => {
+    let resposta = perguntas.find(({ id }) => id === key)?.resposta;
+    return acc + (respostas[resposta] || 0);
+  }, 0);
+
+const scorePleitos = (gabarito, pleitos) =>
+  Math.min(
     33.3,
-    Object.values(doc.pleitos || {}).reduce(
+    Object.values(pleitos || {}).reduce(
       (acc, arr) =>
         acc +
         (gabarito.pleitos.situacao[arr["situacao"]] || 0) +
@@ -17,5 +17,9 @@ export default function pontuacao(doc) {
       0
     )
   );
+
+export default function pontuacao(doc) {
+  let score = scoreRespostas(Object.entries(gabarito.respostas), doc.perguntas);
+  score += scorePleitos(gabarito, doc.pleitos);
   return score.toFixed(1);
 }

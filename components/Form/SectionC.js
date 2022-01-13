@@ -1,6 +1,6 @@
 import perguntas_c1 from "../../scripts/perguntas_c1";
 import perguntas_c2 from "../../scripts/perguntas_c2";
-import PerguntaForm from "../PerguntaForm";
+import PerguntaForm from "./PerguntaForm";
 
 export default (params) => {
   return (

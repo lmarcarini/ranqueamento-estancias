@@ -2,19 +2,19 @@
     "info":"info",
     "codigo":"a1", 
     "opcoes":[
-    { "value": "estudo atualizado dos ultimos dois anos realizado por equipe especializada", "file": true },
-    { "value": "estudo atualizado dos ultimos dois anos realizado por equipe da prefeitura", "file": true },
-    { "value": "estudo atualizado dos ultimos tres a cinco anos realizado por equipe especializada", "file": true },
-    { "value": "estudo atualizado dos ultimos tres a cinco anos realizado por equipe da prefeitura", "file": true },
-    { "value": "estudo atualizado há mais de cinco anos realizado por equipe especializada", "file": true },
-    { "value": "estudo atualizado há mais de cinco anos realizado por equipe da prefeitura", "file": true },
-    { "value": "não tem estudo de demanda turística", "file": false }
+    { "value": "estudo atualizado dos ultimos dois anos realizado por equipe especializada", "file": true, "pontuacao": 8.3 },
+    { "value": "estudo atualizado dos ultimos dois anos realizado por equipe da prefeitura", "file": true, "pontuacao": 6.3 },
+    { "value": "estudo atualizado dos ultimos tres a cinco anos realizado por equipe especializada", "file": true, "pontuacao": 5.3 },
+    { "value": "estudo atualizado dos ultimos tres a cinco anos realizado por equipe da prefeitura", "file": true, "pontuacao": 4.3 },
+    { "value": "estudo atualizado há mais de cinco anos realizado por equipe especializada", "file": true, "pontuacao": 3.3 },
+    { "value": "estudo atualizado há mais de cinco anos realizado por equipe da prefeitura", "file": true, "pontuacao": 2.3 },
+    { "value": "não tem estudo de demanda turística", "file": false, "pontuacao": 0 }
   ]},
   {"cabecalho":"A.2 Inventário turísticos dos ATRATIVOS, EQUIPAMENTOS E INFRA-ESTRUTURA dos municípios - plataforma da Secretaria de Estado de Turismo",
     "info":"info",
     "codigo":"a2", 
     "opcoes":[
-    { "value": "Preenchimento realizado e atualizado nos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo", "file": true },
-    { "value": "Preenchimento realizado anterior aos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo", "file": true }
+    { "value": "Preenchimento realizado e atualizado nos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo", "file": true, "pontuacao": 8.3 },
+    { "value": "Preenchimento realizado anterior aos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo", "file": true, "pontuacao": 4.3 }
   ]}
 ]

@@ -53,13 +53,15 @@ export default ({ excluirPleito }) => {
               Infraestrutura de apoio
             </option>
           </Form.Select>
-          <Button onClick={excluir} id={id} className="mt-2">
+          <Button onClick={excluir} id={id} className="mt-2" variant="danger">
             Excluir Pleito
           </Button>
         </Form.Group>
       ))}
 
-      <Button onClick={adicionarPleito}>Adicionar novo pleito</Button>
+      <Button onClick={adicionarPleito} className="mt-2">
+        Adicionar novo pleito
+      </Button>
     </>
   );
 };

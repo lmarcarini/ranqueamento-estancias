@@ -1,17 +1,17 @@
 [{"cabecalho":"A.4.1 Plano diretor de turismo",
     "info":"info",
-    "codigo":"a41", 
+    "codigo":"a4_1", 
     "opcoes":[
-    { "value": "Plano diretor realizado nos ultimos cinco anos", "file": true },
-    { "value": "Plano diretor realizado nos ultimos dez anos", "file": true },
-    { "value": "Plano diretor realizado nos ultimos quinze anos", "file": true },
-    { "value": "Plano diretor realizado nos ultimos quinze anos", "file": true }
+    { "value": "Plano diretor realizado nos ultimos cinco anos", "file": true, "pontuacao": 7.3 },
+    { "value": "Plano diretor realizado nos ultimos dez anos", "file": true, "pontuacao": 5.3 },
+    { "value": "Plano diretor realizado nos ultimos quinze anos", "file": true, "pontuacao": 3.3 },
+    { "value": "Plano diretor realizado nos ultimos quinze anos", "file": true, "pontuacao": 0 }
   ]},
   {"cabecalho":"A.4.2 Atas das últimas seis reuniões do COMTUR",
     "info":"info",
-    "codigo":"a42", 
+    "codigo":"a4_2", 
     "opcoes":[
-      { "value": "Sim", "file": true },
-      { "value": "Não", "file": false }
+      { "value": "Sim", "file": true, "pontuacao": 1 },
+      { "value": "Não", "file": false, "pontuacao": 0 }
     ]}
 ]
