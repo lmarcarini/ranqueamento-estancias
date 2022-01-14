@@ -9,7 +9,8 @@ export default () => {
   ]);
 
   return (
-    <Container>
+    <Container className="mt-3">
+      <h4 style={{ textAlign: "center" }}>Ranqueamento ano 2022</h4>
       <TabelaMunicipios listaMunicipios={municipios}></TabelaMunicipios>
     </Container>
   );

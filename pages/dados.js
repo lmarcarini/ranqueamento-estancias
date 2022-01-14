@@ -3,9 +3,12 @@ import Button from "react-bootstrap/Button";
 import VisualizadorDados from "../components/VisualizadorDados";
 import { useState } from "react";
 import DadosEnviadosModal from "../components/DadosEnviadosModal";
+import { useCiclo } from "../contexts/CicloContext";
+import RecursoForm from "../components/RecursoForm";
 
 export default () => {
   const [dadosEnviados, setDadosEnviados] = useState(true);
+  const { ciclo } = useCiclo();
   return (
     <Container className="mt-3">
       {dadosEnviados ? (
@@ -16,9 +19,12 @@ export default () => {
           ano.
         </h6>
       )}
-      <Button className="mt-5 mb-5" href="form">
-        Enviar dados
-      </Button>
+      {ciclo === "cadastroAberto" && (
+        <Button className="mt-3" href="form">
+          Cadastrar dados
+        </Button>
+      )}
+      {ciclo === "recursosAberto" && <RecursoForm />}
       <DadosEnviadosModal />
     </Container>
   );

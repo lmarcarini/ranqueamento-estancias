@@ -5,7 +5,7 @@ import { createContext, useContext } from "react";
 const cicloContext = createContext({ ciclo: "cadastroAberto" });
 
 export const CicloProvider = ({ children }) => {
-  const ciclo = { ciclo: "resultados" };
+  const ciclo = { ciclo: "cadastroAberto" };
   return (
     <cicloContext.Provider value={ciclo}>{children}</cicloContext.Provider>
   );

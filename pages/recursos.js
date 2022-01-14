@@ -4,11 +4,10 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import dados from "../scripts/mock2.json";
 import { useState } from "react";
+import RecursoForm from "../components/RecursoForm";
 
 export default () => {
   const [validado, setValidado] = useState(true);
-
-  const handleSubmit = () => {};
 
   return (
     <Container className="mt-3">
@@ -63,17 +62,9 @@ export default () => {
               </div>
             ))}
           </Row>
-          <Form>
-            <Form.Label>Recurso</Form.Label>
-            <Form.Control
-              as="textarea"
-              type="text"
-              placeholder="Insira seu recurso aqui"
-            />
-            <Button onClick={handleSubmit} className="mt-2">
-              Registrar recurso
-            </Button>
-          </Form>
+          <Row>
+            <RecursoForm />
+          </Row>
         </Container>
       ) : (
         <p>
