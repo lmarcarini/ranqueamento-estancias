@@ -9,6 +9,7 @@ import SectionC from "../components/Form/SectionC";
 import { useEffect, useState } from "react";
 import pontuacao from "../scripts/pontuacao";
 import ConfirmacaodeEnvio from "../components/Form/ConfirmacaodeEnvio";
+import gabarito from "../scripts/respostas.json";
 
 const replacePergunta = (perguntas, id, newValue) => {
   let i = perguntas.findIndex((data) => id === data.id);
@@ -18,9 +19,20 @@ const replacePergunta = (perguntas, id, newValue) => {
   );
 };
 
+const carregarPerguntas = (respostas, ano) => ({
+  ano: ano,
+  perguntas: Object.keys(respostas).map((id) => {
+    return { id: id, resposta: "" };
+  }),
+});
+
 export default function form() {
   const [dados, setdados] = useState({ ano: 2020, perguntas: [], pleitos: [] });
   const [score, setscore] = useState(0);
+
+  useEffect(() => {
+    setdados(carregarPerguntas(gabarito.respostas, gabarito.ano));
+  }, []);
 
   useEffect(() => {
     setscore(pontuacao(dados));

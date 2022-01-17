@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 
 const authUserContext = createContext({
+  name: "Estela",
   authUser: null,
   userType: "municipio",
   loading: false,
@@ -8,6 +9,7 @@ const authUserContext = createContext({
 
 export const AuthUserProvider = ({ children }) => {
   const auth = {
+    name: "Estela",
     authUser: true,
     userType: "municipio",
     loading: false,

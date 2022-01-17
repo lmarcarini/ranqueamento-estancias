@@ -11,20 +11,23 @@ export default () => {
   const { ciclo } = useCiclo();
   return (
     <Container className="mt-3">
-      {dadosEnviados ? (
-        <VisualizadorDados />
+      {ciclo === "cadastroAberto" ? (
+        dadosEnviados ? (
+          <VisualizadorDados />
+        ) : (
+          <h6>
+            O município ainda não tem possui inseridos para o ranqueamento deste
+            ano.
+          </h6>
+        )
       ) : (
-        <h6>
-          O município ainda não tem possui inseridos para o ranqueamento deste
-          ano.
-        </h6>
+        <h6>Fora do período de cadastro.</h6>
       )}
       {ciclo === "cadastroAberto" && (
         <Button className="mt-3" href="form">
-          Cadastrar dados
+          {dadosEnviados ? "Alterar dados cadastrados" : "Cadastrar dados"}
         </Button>
       )}
-      {ciclo === "recursosAberto" && <RecursoForm />}
       <DadosEnviadosModal />
     </Container>
   );

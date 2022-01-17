@@ -2,7 +2,7 @@ import Table from "react-bootstrap/Table";
 
 export default ({ listaMunicipios }) => {
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover responsive="sm">
       <thead>
         <tr>
           <th>Posição</th>
