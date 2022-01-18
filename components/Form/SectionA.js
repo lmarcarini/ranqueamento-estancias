@@ -3,9 +3,10 @@ import perguntas_a1 from "../../scripts/perguntas_a1.json";
 import perguntas_a3 from "../../scripts/perguntas_a3.json";
 import perguntas_a4 from "../../scripts/perguntas_a4.json";
 
-export default (params) => {
+export default function SectionA({ id, dadosAnteriores }) {
   return (
     <>
+      <h4 id={id}>Atendimento à legislação</h4>
       {perguntas_a1.map(({ cabecalho, info, codigo, opcoes }) => (
         <PerguntaForm
           cabecalho={cabecalho}
@@ -13,6 +14,9 @@ export default (params) => {
           key={codigo}
           codigo={codigo}
           opcoes={opcoes}
+          resposta={
+            dadosAnteriores?.perguntas.find((p) => p.id === codigo)?.resposta
+          }
         ></PerguntaForm>
       ))}
 
@@ -25,6 +29,9 @@ export default (params) => {
           key={codigo}
           codigo={codigo}
           opcoes={opcoes}
+          resposta={
+            dadosAnteriores?.perguntas.find((p) => p.id === codigo)?.resposta
+          }
         ></PerguntaForm>
       ))}
 
@@ -40,8 +47,11 @@ export default (params) => {
           key={codigo}
           codigo={codigo}
           opcoes={opcoes}
+          resposta={
+            dadosAnteriores?.perguntas.find((p) => p.id === codigo)?.resposta
+          }
         ></PerguntaForm>
       ))}
     </>
   );
-};
+}

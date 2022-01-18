@@ -3,13 +3,13 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 
-export default ({
+export default function ValidacaoModal({
   opcoes = ["1", "2"],
   cabecalho = "",
   id = 0,
   resposta = "",
   handleValidacao,
-}) => {
+}) {
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
@@ -64,4 +64,4 @@ export default ({
       </Modal>
     </>
   );
-};
+}

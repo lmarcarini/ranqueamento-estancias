@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default () => {
+export default function RecursoForm() {
   const handleSubmit = () => {};
   return (
     <Form>
@@ -16,4 +16,4 @@ export default () => {
       </Button>
     </Form>
   );
-};
+}

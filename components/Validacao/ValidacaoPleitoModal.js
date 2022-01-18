@@ -4,11 +4,11 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import respostas from "../../scripts/respostas.json";
 
-export default ({
+export default function ValidacaoPleitoModal({
   pleito = { nome: "", tipo: "", situacao: "" },
   handleValidacaoPleito,
   i,
-}) => {
+}) {
   const [show, setShow] = useState(false);
 
   const [tipoValidado, setTipoValidado] = useState("");
@@ -79,4 +79,4 @@ export default ({
       </Modal>
     </>
   );
-};
+}

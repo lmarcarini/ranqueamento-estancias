@@ -2,9 +2,10 @@ import perguntas_c1 from "../../scripts/perguntas_c1";
 import perguntas_c2 from "../../scripts/perguntas_c2";
 import PerguntaForm from "./PerguntaForm";
 
-export default (params) => {
+export default function SectionC({ id, dadosAnteriores }) {
   return (
     <>
+      <h4 id={id}>Requisitos</h4>
       <h5>C.1 Estruturação e composição do COMTUR</h5>
       {perguntas_c1.map(({ cabecalho, info, codigo, opcoes }) => (
         <PerguntaForm
@@ -13,6 +14,9 @@ export default (params) => {
           key={codigo}
           codigo={codigo}
           opcoes={opcoes}
+          resposta={
+            dadosAnteriores?.perguntas.find((p) => p.id === codigo)?.resposta
+          }
         ></PerguntaForm>
       ))}
 
@@ -23,8 +27,11 @@ export default (params) => {
           key={codigo}
           codigo={codigo}
           opcoes={opcoes}
+          resposta={
+            dadosAnteriores?.perguntas.find((p) => p.id === codigo)?.resposta
+          }
         ></PerguntaForm>
       ))}
     </>
   );
-};
+}

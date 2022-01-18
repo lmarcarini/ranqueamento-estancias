@@ -1,7 +1,7 @@
 import ValidacaoModal from "./ValidacaoModal";
 import gabarito from "../../scripts/respostas.json";
 
-export default ({ perguntas, handleValidacao }) => {
+export default function RespostasListValidacao({ perguntas, handleValidacao }) {
   return (
     <>
       <h5>Respostas</h5>
@@ -35,4 +35,4 @@ export default ({ perguntas, handleValidacao }) => {
       )}
     </>
   );
-};
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
-export default () => {
+export default function DadosEnviadosModal() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -17,4 +17,4 @@ export default () => {
       <Modal.Body>Dados enviados com sucesso.</Modal.Body>
     </Modal>
   );
-};
+}

@@ -1,6 +1,9 @@
 import ValidacaoPleitoModal from "./ValidacaoPleitoModal";
 
-export default ({ pleitos, handleValidacaoPleito }) => {
+export default function PleitosListValidacao({
+  pleitos,
+  handleValidacaoPleito,
+}) {
   return (
     <>
       <h5>Pleitos</h5>
@@ -33,4 +36,4 @@ export default ({ pleitos, handleValidacaoPleito }) => {
       ))}
     </>
   );
-};
+}

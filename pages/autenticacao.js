@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default () => {
+export default function Autenticacao() {
   return (
     <Container className="mt-3">
       <Form>
@@ -23,4 +23,4 @@ export default () => {
       </Form>
     </Container>
   );
-};
+}

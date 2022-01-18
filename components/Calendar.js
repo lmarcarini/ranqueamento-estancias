@@ -2,7 +2,7 @@ import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import DataEvento from "./DataEvento";
 
-export default () => {
+export default function Calendar() {
   const [datas, setdatas] = useState([
     { data: new Date(2021, 11, 5), descricao: "Cadastro das informações" },
 
@@ -33,4 +33,4 @@ export default () => {
       </Card.Body>
     </Card>
   );
-};
+}

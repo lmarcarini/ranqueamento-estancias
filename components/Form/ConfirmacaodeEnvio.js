@@ -1,24 +1,10 @@
-import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-export default () => {
-  const [show, setshow] = useState(false);
-
-  const handleClose = () => setshow(false);
-  const handleShow = () => setshow(true);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    window.location.href = "/dados#sucesso";
-  };
-
+export default function ConfirmacaodeEnvio({ show, handleClose, handleSend }) {
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Enviar
-      </Button>
-      <Modal show={show}>
+      <Modal show={show} centered>
         <Modal.Header closeButton onHide={handleClose}>
           Confirmar envio?
         </Modal.Header>
@@ -34,16 +20,11 @@ export default () => {
           <Button variant="secondary" onClick={handleClose}>
             Voltar
           </Button>
-          <Button
-            variant="primary"
-            //type="submit"
-            form="dados"
-            onClick={handleSubmit}
-          >
+          <Button variant="primary" onClick={handleSend}>
             Confirmar
           </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
-};
+}

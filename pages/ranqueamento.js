@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import TabelaMunicipios from "../components/TabelaMunicipios";
 
-export default () => {
+export default function Ranqueamento() {
   const [anos, setAnos] = useState([2021, 2020, 2019]);
   const [municipios, setmunicipios] = useState([
     { posicao: 1, nome: "Tupa", pontuacao: 70 },
@@ -23,8 +23,10 @@ export default () => {
         onChange={selecaoAno}
       >
         <option>Selecione o ano do ranqueamento</option>
-        {anos.map((ano) => (
-          <option value={ano}>{ano}</option>
+        {anos.map((ano, i) => (
+          <option value={ano} key={i}>
+            {ano}
+          </option>
         ))}
       </Form.Select>
       {anoSelecionado && (
@@ -32,4 +34,4 @@ export default () => {
       )}
     </Container>
   );
-};
+}

@@ -1,6 +1,9 @@
 import Table from "react-bootstrap/Table";
 
-export default ({ listaMunicipios, handleSelecionar }) => {
+export default function TabelaMunicipiosValidacao({
+  listaMunicipios,
+  handleSelecionar,
+}) {
   const handleClick = (e, nome) => {
     console.log(nome);
     handleSelecionar(nome);
@@ -30,4 +33,4 @@ export default ({ listaMunicipios, handleSelecionar }) => {
       </tbody>
     </Table>
   );
-};
+}

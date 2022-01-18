@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import TabelaMunicipiosValidacao from "../components/Validacao/TabelaMunicipiosValidacao";
 import ValidarForm from "../components/ValidarForm";
 
-export default () => {
+export default function Validacao() {
   const [municipios, setmunicipios] = useState([
     { posicao: 1, nome: "Tupa", pontuacao: 70, pontuacaoValidada: 65 },
     { posicao: 2, nome: "Barretos", pontuacao: 60, pontuacaoValidada: 55 },
@@ -30,4 +30,4 @@ export default () => {
       )}
     </Container>
   );
-};
+}

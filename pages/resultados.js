@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import VisualizadorDados from "../components/VisualizadorDados";
 import { useState } from "react";
 
-export default () => {
+export default function Resultados() {
   const [anos, setAnos] = useState([2021, 2020, 2019]);
   const [anoSelecionado, setAnoSelecionado] = useState(null);
   const selecaoAno = (e) => {
@@ -20,12 +20,14 @@ export default () => {
           onChange={selecaoAno}
         >
           <option>Selecione o ano do ranqueamento</option>
-          {anos.map((ano) => (
-            <option value={ano}>{ano}</option>
+          {anos.map((ano, i) => (
+            <option value={ano} key={i}>
+              {ano}
+            </option>
           ))}
         </Form.Select>
       </Row>
-      <Row>{anoSelecionado && <VisualizadorDados />}</Row>
+      <Row>{anoSelecionado && <VisualizadorDados final={true} />}</Row>
     </Container>
   );
-};
+}

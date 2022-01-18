@@ -11,10 +11,8 @@ const compareDates = (date1, date2) => {
   return "1";
 };
 
-export default ({ data, children }) => {
+export default function DataEvento({ data, children }) {
   const [estado, setestado] = useState("antes");
-
-  const estados = { "-1": "antes", 0: "urgente", 1: "depois" };
 
   const styles = {
     antes: { color: "black" },
@@ -24,6 +22,7 @@ export default ({ data, children }) => {
 
   useEffect(() => {
     let hoje = new Date(Date.now());
+    let estados = { "-1": "antes", 0: "urgente", 1: "depois" };
     setestado(estados[compareDates(data, hoje)]);
   }, [data]);
   return (
@@ -36,4 +35,4 @@ export default ({ data, children }) => {
       <Col>{children}</Col>
     </Row>
   );
-};
+}

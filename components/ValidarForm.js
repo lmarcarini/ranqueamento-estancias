@@ -5,14 +5,14 @@ import Button from "react-bootstrap/Button";
 import PleitosListValidacao from "./Validacao/PleitosListValidacao";
 import RespostasListValidacao from "./Validacao/RespostasListValidacao";
 
-export default ({
+export default function ValidarForm({
   dados = { municipio: "Carregando", pleitos: "", perguntas: "" },
-}) => {
+}) {
   const [dadosValidados, setDadosValidados] = useState({});
 
   useEffect(() => {
     setDadosValidados({ ...mockData });
-  }, [mockData]);
+  }, []);
 
   useEffect(() => {
     console.log(dadosValidados);
@@ -63,4 +63,4 @@ export default ({
       <Button onClick={handleSubmit}>Registrar alterações</Button>
     </Form>
   );
-};
+}

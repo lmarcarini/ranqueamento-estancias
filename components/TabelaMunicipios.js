@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 
-export default ({ listaMunicipios }) => {
+export default function TabelaMunicipios({ listaMunicipios }) {
   return (
     <Table striped bordered hover responsive="sm">
       <thead>
@@ -21,4 +21,4 @@ export default ({ listaMunicipios }) => {
       </tbody>
     </Table>
   );
-};
+}

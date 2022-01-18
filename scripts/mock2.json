@@ -10,7 +10,7 @@
         "url": "link1.html"
     },{"id":"a2",
         "cabecalho":"A.2 Inventário turísticos dos ATRATIVOS, EQUIPAMENTOS E INFRA-ESTRUTURA dos municípios - plataforma da Secretaria de Estado de Turismo",
-        "resposta":"Preenchimento realizado anterior aos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo",
+        "resposta":"Preenchimento realizado e atualizado nos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo",
         "validacao": "Preenchimento realizado anterior aos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo",
         "justificativa": "Comprovante não condiz com a resposta.",
         "pontos":"1",
@@ -19,5 +19,10 @@
     "pleitos":
         [{"nome":"Obra da rua de baixo",
         "situacao":"obra finalizada",
-        "tipo":"Infraestrutura turística"}]
+        "tipo":"Infraestrutura turística"},
+        {"nome":"Obra da rua de cima",
+            "situacao":"obra finalizada",
+            "tipo":"Infraestrutura turística",
+            "situacaoValidado":"obra em andamento",
+            "tipoValidado":"Infraestrutura de acesso"}]
 }

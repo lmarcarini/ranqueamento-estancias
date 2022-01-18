@@ -1,7 +1,7 @@
-import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
 import NavBar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import SectionA from "../components/Form/SectionA";
 import SectionB from "../components/Form/SectionB";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import pontuacao from "../scripts/pontuacao";
 import ConfirmacaodeEnvio from "../components/Form/ConfirmacaodeEnvio";
 import gabarito from "../scripts/respostas.json";
+import dadosAnteriores from "../scripts/mock2.json";
 
 const replacePergunta = (perguntas, id, newValue) => {
   let i = perguntas.findIndex((data) => id === data.id);
@@ -19,19 +20,24 @@ const replacePergunta = (perguntas, id, newValue) => {
   );
 };
 
-const carregarPerguntas = (respostas, ano) => ({
+const carregarPerguntas = (respostas, ano, dadosAnteriores) => ({
   ano: ano,
-  perguntas: Object.keys(respostas).map((id) => {
-    return { id: id, resposta: "" };
-  }),
+  perguntas: Object.keys(respostas).map((id) => ({
+    id: id,
+    resposta:
+      dadosAnteriores?.perguntas.find((p) => p.id === id)?.resposta || "",
+  })),
+  pleitos: dadosAnteriores?.pleitos || [],
 });
 
-export default function form() {
+export default function CadastroForm() {
   const [dados, setdados] = useState({ ano: 2020, perguntas: [], pleitos: [] });
   const [score, setscore] = useState(0);
 
   useEffect(() => {
-    setdados(carregarPerguntas(gabarito.respostas, gabarito.ano));
+    setdados(
+      carregarPerguntas(gabarito.respostas, gabarito.ano, dadosAnteriores)
+    );
   }, []);
 
   useEffect(() => {
@@ -76,26 +82,57 @@ export default function form() {
     setdados(copyDados);
   };
 
+  const [show, setshow] = useState(false);
+
+  const handleClose = () => setshow(false);
+  const handleShow = () => setshow(true);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleShow();
+  };
+
+  const handleSend = () => {
+    window.location.href = "/cadastro#sucesso";
+  };
+
   return (
     <Container style={{ paddingBottom: "70px" }}>
-      <Form onChange={handleChange} id="dados">
-        <Tabs defaultActiveKey="sectionA" id="form">
-          <Tab eventKey="sectionA" title="Atendimento à Legislação">
-            <SectionA />
-          </Tab>
-          <Tab eventKey="sectionB" title="Pleitos">
-            <SectionB excluirPleito={excluirPleito} />
-          </Tab>
-          <Tab eventKey="sectionC" title="Requisitos">
-            <SectionC />
-          </Tab>
-        </Tabs>
+      <Form onChange={handleChange} id="dados" onSubmit={handleSubmit}>
+        <Nav className="justify-content-center">
+          <a className="nav-link" href="#secaoA">
+            Legislação
+          </a>
+          <a className="nav-link" href="#secaoB">
+            Pleitos
+          </a>
+          <a className="nav-link" href="#secaoC">
+            Requisitos
+          </a>
+        </Nav>
+
+        <hr />
+        <SectionA id="secaoA" dadosAnteriores={dadosAnteriores} />
+        <hr />
+        <SectionB
+          id="secaoB"
+          excluirPleito={excluirPleito}
+          dadosAnteriores={dadosAnteriores}
+        />
+        <hr />
+        <SectionC id="secaoC" dadosAnteriores={dadosAnteriores} />
+
         <NavBar fixed="bottom" bg="dark" variant="dark">
           <Container>
             <Form.Label className="lead" style={{ color: "white" }}>
               Pontuação prévia: {score}/100
             </Form.Label>
-            <ConfirmacaodeEnvio />
+            <ConfirmacaodeEnvio
+              handleClose={handleClose}
+              show={show}
+              handleSend={handleSend}
+            />
+            <Button type="submit">Enviar</Button>
           </Container>
         </NavBar>
       </Form>

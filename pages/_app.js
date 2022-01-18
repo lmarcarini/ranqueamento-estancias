@@ -7,7 +7,7 @@ import { CicloProvider } from "../contexts/CicloContext";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <SSRProvider>
+    <>
       <Head>
         <title>Ranqueamento Estâncias SP</title>
         <meta
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
           </Layout>
         </AuthUserProvider>
       </CicloProvider>
-    </SSRProvider>
+    </>
   );
 }
 

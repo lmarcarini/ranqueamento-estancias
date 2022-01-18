@@ -4,9 +4,8 @@ import VisualizadorDados from "../components/VisualizadorDados";
 import { useState } from "react";
 import DadosEnviadosModal from "../components/DadosEnviadosModal";
 import { useCiclo } from "../contexts/CicloContext";
-import RecursoForm from "../components/RecursoForm";
 
-export default () => {
+export default function Cadastro() {
   const [dadosEnviados, setDadosEnviados] = useState(true);
   const { ciclo } = useCiclo();
   return (
@@ -31,4 +30,4 @@ export default () => {
       <DadosEnviadosModal />
     </Container>
   );
-};
+}
