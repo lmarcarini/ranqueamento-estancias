@@ -15,7 +15,8 @@ export default function SectionC({ id, dadosAnteriores }) {
           codigo={codigo}
           opcoes={opcoes}
           resposta={
-            dadosAnteriores?.perguntas.find((p) => p.id === codigo)?.resposta
+            dadosAnteriores?.perguntas &&
+            dadosAnteriores?.perguntas[codigo]?.resposta
           }
         ></PerguntaForm>
       ))}
@@ -28,7 +29,8 @@ export default function SectionC({ id, dadosAnteriores }) {
           codigo={codigo}
           opcoes={opcoes}
           resposta={
-            dadosAnteriores?.perguntas.find((p) => p.id === codigo)?.resposta
+            dadosAnteriores?.perguntas &&
+            dadosAnteriores?.perguntas[codigo]?.resposta
           }
         ></PerguntaForm>
       ))}

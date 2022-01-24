@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import useFirebaseAuth from "../Firebase/useFirebaseAuth";
 
 const authUserContext = createContext({
   name: "Estela",
@@ -8,12 +9,8 @@ const authUserContext = createContext({
 });
 
 export const AuthUserProvider = ({ children }) => {
-  const auth = {
-    name: "Estela",
-    authUser: true,
-    userType: "municipio",
-    loading: false,
-  };
+  const auth = useFirebaseAuth();
+
   return (
     <authUserContext.Provider value={auth}>{children}</authUserContext.Provider>
   );

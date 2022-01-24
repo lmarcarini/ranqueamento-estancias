@@ -1,11 +1,8 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// // Import the functions you need from the SDKs you need
+import { initializeApp, getApps } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDtychAqeuALOHvR8IGpvPfvR33dxc0MC0",
   authDomain: "ranqueamento-estancias-dev.firebaseapp.com",
@@ -16,8 +13,15 @@ const firebaseConfig = {
   measurementId: "G-24ZCCLQ0RR",
 };
 
-// Initialize Firebase
+// // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
-export default Firebase(app);
+export default app;
+
+if (!getApps().length) {
+  initializeApp(firebaseConfig);
+}
+
+export const auth = getAuth(app);
+
+export const db = getFirestore();

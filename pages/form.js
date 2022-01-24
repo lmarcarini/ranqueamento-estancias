@@ -9,36 +9,63 @@ import SectionC from "../components/Form/SectionC";
 import { useEffect, useState } from "react";
 import pontuacao from "../scripts/pontuacao";
 import ConfirmacaodeEnvio from "../components/Form/ConfirmacaodeEnvio";
-import gabarito from "../scripts/respostas.json";
-import dadosAnteriores from "../scripts/mock2.json";
+import { db } from "../Firebase/auth";
+import { useAuth } from "../contexts/AuthenticationContext";
+import { doc, setDoc, getDoc, collection } from "firebase/firestore";
+import { useRouter } from "next/router";
+import gabarito from "../scripts/respostas";
 
 const replacePergunta = (perguntas, id, newValue) => {
-  let i = perguntas.findIndex((data) => id === data.id);
-  if (i === -1) return [...perguntas, { id: id, resposta: newValue }];
-  return perguntas.map((data) =>
-    id === data.id ? { id: id, resposta: newValue } : data
-  );
+  perguntas[id] = { resposta: newValue, cabecalho: gabarito.cabecalho[id] };
+  return perguntas;
 };
 
-const carregarPerguntas = (respostas, ano, dadosAnteriores) => ({
-  ano: ano,
-  perguntas: Object.keys(respostas).map((id) => ({
-    id: id,
-    resposta:
-      dadosAnteriores?.perguntas.find((p) => p.id === id)?.resposta || "",
-  })),
-  pleitos: dadosAnteriores?.pleitos || [],
-});
-
 export default function CadastroForm() {
-  const [dados, setdados] = useState({ ano: 2020, perguntas: [], pleitos: [] });
+  const { authUser, loading } = useAuth();
+  const [loadingOldData, setloadingolddata] = useState(true);
+  const [dadosAnteriores, setdadosanteriores] = useState({
+    perguntas: {},
+    pleitos: {},
+  });
+  const [dados, setdados] = useState({ ano: 2020, perguntas: {}, pleitos: {} });
   const [score, setscore] = useState(0);
 
+  const router = useRouter();
+
   useEffect(() => {
-    setdados(
-      carregarPerguntas(gabarito.respostas, gabarito.ano, dadosAnteriores)
-    );
-  }, []);
+    if (!authUser && !loading) router.push("/");
+  }, [authUser, loading, router]);
+
+  const [tipo, setTipo] = useState("");
+  const [nome, setNome] = useState("Usuário(a)");
+  const [municipio, setmunicipio] = useState("município");
+  useEffect(() => {
+    async function fetchUserInfo() {
+      if (!authUser) return false;
+      const docRef = doc(db, "users", authUser.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setTipo(docSnap.data().tipo);
+        setNome(docSnap.data().nome || "Usuário(a)");
+        setmunicipio(docSnap.data().municipio || "município");
+      }
+    }
+    fetchUserInfo();
+  }, [authUser]);
+
+  useEffect(() => {
+    if (municipio === "município") return null;
+    async function fetchDadosAnteriores() {
+      const dadosCadastrados = collection(db, "dadosCadastrados");
+      const dadosCadRef = doc(dadosCadastrados, municipio);
+      const dadosSnap = await getDoc(dadosCadRef);
+      if (dadosSnap.exists()) {
+        setdadosanteriores(dadosSnap.data());
+      }
+      setloadingolddata(false);
+    }
+    fetchDadosAnteriores();
+  }, [municipio]);
 
   useEffect(() => {
     setscore(pontuacao(dados));
@@ -93,9 +120,24 @@ export default function CadastroForm() {
   };
 
   const handleSend = () => {
-    window.location.href = "/cadastro#sucesso";
+    let data = new Date();
+    async function cadastrarFirestore() {
+      await setDoc(doc(db, "dadosCadastrados", municipio), {
+        ano: dados.ano,
+        municipio: municipio,
+        funcionario: nome,
+        data: data.toLocaleString("pt-BR"),
+        perguntas: { ...dados.perguntas },
+        pleitos: { ...dados.pleitos },
+      });
+      window.location.href = "/cadastro#sucesso";
+    }
+    cadastrarFirestore();
   };
 
+  if (loading) return <div>Carregando...</div>;
+  if (!authUser) return <div>Não autorizado</div>;
+  if (loadingOldData) return <div>Carregando...</div>;
   return (
     <Container style={{ paddingBottom: "70px" }}>
       <Form onChange={handleChange} id="dados" onSubmit={handleSubmit}>

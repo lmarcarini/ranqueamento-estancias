@@ -2,17 +2,21 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import TabelaMunicipios from "../components/TabelaMunicipios";
+import { db } from "../Firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
 
-export default function Ranqueamento() {
-  const [anos, setAnos] = useState([2021, 2020, 2019]);
-  const [municipios, setmunicipios] = useState([
-    { posicao: 1, nome: "Tupa", pontuacao: 70 },
-    { posicao: 2, nome: "Barretos", pontuacao: 60 },
-  ]);
+export default function Ranqueamento({ ranqueamentos, anos }) {
+  const [municipios, setmunicipios] = useState([]);
 
   const [anoSelecionado, setAnoSelecionado] = useState(null);
   const selecaoAno = (e) => {
-    setAnoSelecionado(e.target.value);
+    if (e.target.value === "-1") {
+      setAnoSelecionado(null);
+      return null;
+    }
+    let ano = e.target.value;
+    setAnoSelecionado(ano);
+    setmunicipios(ranqueamentos[ano]);
   };
 
   return (
@@ -22,9 +26,9 @@ export default function Ranqueamento() {
         id="ano"
         onChange={selecaoAno}
       >
-        <option>Selecione o ano do ranqueamento</option>
+        <option value="-1">Selecione o ano do ranqueamento</option>
         {anos.map((ano, i) => (
-          <option value={ano} key={i}>
+          <option value={i} key={i}>
             {ano}
           </option>
         ))}
@@ -34,4 +38,25 @@ export default function Ranqueamento() {
       )}
     </Container>
   );
+}
+
+export async function getStaticProps() {
+  let ranqueamentosRef = collection(db, "ranqueamento");
+  const querySnapshot = await getDocs(ranqueamentosRef);
+  let anos = querySnapshot.docs.map((doc) => doc.data().ano);
+  let ranqueamentos = await Promise.all(
+    querySnapshot.docs.map(async (doc) => {
+      let ranqueRef = collection(doc.ref, "municipios");
+      const ranqueSnap = await getDocs(ranqueRef);
+      return ranqueSnap.docs.map((doc) => doc.data());
+    })
+  );
+
+  return {
+    props: {
+      ranqueamentos,
+      anos,
+    },
+    revalidate: 120,
+  };
 }

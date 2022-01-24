@@ -2,7 +2,7 @@ import gabarito from "../scripts/respostas.json";
 
 const scoreRespostas = (gabarito, perguntas) =>
   gabarito.reduce((acc, [key, respostas]) => {
-    let resposta = perguntas.find(({ id }) => id === key);
+    let resposta = perguntas[key];
     let respostaValidada = resposta?.validacao;
     let respostaMunicipio = resposta?.resposta;
     return (

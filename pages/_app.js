@@ -1,13 +1,16 @@
 import Head from "next/head";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SSRProvider } from "@restart/ui/ssr";
-import { AuthUserProvider } from "../contexts/AuthenticationContext";
 import Layout from "../layouts/Layout";
+import { AuthUserProvider } from "../contexts/AuthenticationContext";
 import { CicloProvider } from "../contexts/CicloContext";
+//import initAuth from "../Firebase/initAuth";
+
+//initAuth();
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <SSRProvider>
       <Head>
         <title>Ranqueamento Estâncias SP</title>
         <meta
@@ -24,7 +27,7 @@ function MyApp({ Component, pageProps }) {
           </Layout>
         </AuthUserProvider>
       </CicloProvider>
-    </>
+    </SSRProvider>
   );
 }
 

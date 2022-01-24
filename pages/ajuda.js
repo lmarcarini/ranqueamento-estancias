@@ -1,9 +1,11 @@
 import Container from "react-bootstrap/Container";
 
-export default function Ajuda() {
+const Ajuda = () => {
   return (
     <Container className="mt-3">
-      <p>Teste</p>
+      <p>Aqui ficará o local de ajuda, incluíndo o manual de ajuda.</p>
     </Container>
   );
-}
+};
+
+export default Ajuda;

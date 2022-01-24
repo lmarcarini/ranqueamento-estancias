@@ -14,7 +14,10 @@ export default function SectionB({ excluirPleito, id, dadosAnteriores }) {
 
   useEffect(() => {
     setpleitos(
-      dadosAnteriores.pleitos.map((pleito, i) => ({ ...pleito, id: i }))
+      Object.entries(dadosAnteriores.pleitos).map(([i, pleito]) => ({
+        ...pleito,
+        id: i,
+      }))
     );
     setnPleitos(dadosAnteriores.pleitos.length);
   }, [dadosAnteriores.pleitos]);

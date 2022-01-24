@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import Firebase from "./auth";
+import { auth } from "./auth";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import { useRouter } from "next/router";
 
 const formatAuthUser = (user) => ({
   uid: user.uid,
@@ -7,6 +13,8 @@ const formatAuthUser = (user) => ({
 });
 
 export default function useFirebaseAuth() {
+  const router = useRouter();
+
   const [authUser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -23,14 +31,35 @@ export default function useFirebaseAuth() {
     setLoading(false);
   };
 
-  // listen for Firebase state change
   useEffect(() => {
-    const unsubscribe = Firebase.auth().onAuthStateChanged(authStateChanged);
+    const unsubscribe = onAuthStateChanged(auth, (authState) =>
+      authStateChanged(authState)
+    );
     return () => unsubscribe();
   }, []);
+
+  const login = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        router.push("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
+  const logout = () => {
+    signOut(auth);
+  };
 
   return {
     authUser,
     loading,
+    login,
+    logout,
   };
 }
