@@ -5,14 +5,7 @@ import VisualizadorDados from "../components/VisualizadorDados";
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthenticationContext";
 import { db } from "../Firebase/auth";
-import {
-  doc,
-  getDoc,
-  collection,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 export default function Resultados() {
   const { authUser, loading } = useAuth();
@@ -20,6 +13,7 @@ export default function Resultados() {
   const [anoSelecionado, setAnoSelecionado] = useState(null);
   const selecaoAno = (e) => {
     setAnoSelecionado(e.target.value);
+    if (e.target.value === "false") setAnoSelecionado(null);
   };
 
   const [dadosAnteriores, setDadosAnteriores] = useState(null);
@@ -29,7 +23,6 @@ export default function Resultados() {
       const cadastros = collection(db, "cadastrosAnteriores");
       const q = query(cadastros, where("municipio", "==", authUser.municipio));
       const cadastrosSnap = await getDocs(q);
-      console.log(cadastrosSnap.docs.map((doc) => doc.data()));
       setDadosAnteriores(cadastrosSnap.docs.map((doc) => doc.data()));
       setAnos(cadastrosSnap.docs.map((doc) => doc.data().ano));
     }
@@ -49,7 +42,7 @@ export default function Resultados() {
           id="ano"
           onChange={selecaoAno}
         >
-          <option>Selecione o ano do ranqueamento</option>
+          <option value={false}>Selecione o ano do ranqueamento</option>
           {anos.map((ano, i) => (
             <option value={i} key={i}>
               {ano}
