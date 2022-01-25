@@ -36,28 +36,11 @@ export default function CadastroForm() {
     if (!authUser && !loading) router.push("/");
   }, [authUser, loading, router]);
 
-  const [tipo, setTipo] = useState("");
-  const [nome, setNome] = useState("Usuário(a)");
-  const [municipio, setmunicipio] = useState("município");
   useEffect(() => {
-    async function fetchUserInfo() {
-      if (!authUser) return false;
-      const docRef = doc(db, "users", authUser.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setTipo(docSnap.data().tipo);
-        setNome(docSnap.data().nome || "Usuário(a)");
-        setmunicipio(docSnap.data().municipio || "município");
-      }
-    }
-    fetchUserInfo();
-  }, [authUser]);
-
-  useEffect(() => {
-    if (municipio === "município") return null;
+    if (!authUser) return false;
     async function fetchDadosAnteriores() {
       const dadosCadastrados = collection(db, "dadosCadastrados");
-      const dadosCadRef = doc(dadosCadastrados, municipio);
+      const dadosCadRef = doc(dadosCadastrados, authUser.municipio);
       const dadosSnap = await getDoc(dadosCadRef);
       if (dadosSnap.exists()) {
         setdadosanteriores(dadosSnap.data());
@@ -65,11 +48,10 @@ export default function CadastroForm() {
       setloadingolddata(false);
     }
     fetchDadosAnteriores();
-  }, [municipio]);
+  }, [authUser]);
 
   useEffect(() => {
     setscore(pontuacao(dados));
-    console.log(dados);
   }, [dados]);
 
   const addPleito = (pleito) => {
@@ -120,13 +102,12 @@ export default function CadastroForm() {
   };
 
   const handleSend = () => {
-    let data = new Date();
     async function cadastrarFirestore() {
-      await setDoc(doc(db, "dadosCadastrados", municipio), {
+      await setDoc(doc(db, "dadosCadastrados", authUser.municipio), {
         ano: dados.ano,
-        municipio: municipio,
-        funcionario: nome,
-        data: data.toLocaleString("pt-BR"),
+        municipio: authUser.municipio,
+        funcionario: authUser.nome,
+        data: new Date().toLocaleString("pt-BR"),
         perguntas: { ...dados.perguntas },
         pleitos: { ...dados.pleitos },
       });

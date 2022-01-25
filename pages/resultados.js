@@ -22,33 +22,19 @@ export default function Resultados() {
     setAnoSelecionado(e.target.value);
   };
 
-  const [municipio, setmunicipio] = useState(null);
-  useEffect(() => {
-    if (!authUser) return false;
-    async function fetchUserInfo() {
-      const users = collection(db, "users");
-      const docRef = doc(users, authUser.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setmunicipio(docSnap.data().municipio || null);
-      }
-    }
-    fetchUserInfo();
-  }, [authUser]);
-
   const [dadosAnteriores, setDadosAnteriores] = useState(null);
   useEffect(() => {
-    if (!municipio) return null;
+    if (!authUser) return false;
     async function fetchCadastros() {
       const cadastros = collection(db, "cadastrosAnteriores");
-      const q = query(cadastros, where("municipio", "==", municipio));
+      const q = query(cadastros, where("municipio", "==", authUser.municipio));
       const cadastrosSnap = await getDocs(q);
       console.log(cadastrosSnap.docs.map((doc) => doc.data()));
       setDadosAnteriores(cadastrosSnap.docs.map((doc) => doc.data()));
       setAnos(cadastrosSnap.docs.map((doc) => doc.data().ano));
     }
     fetchCadastros();
-  }, [municipio]);
+  }, [authUser]);
 
   useEffect(() => {
     if (!authUser && !loading) router.push("/");

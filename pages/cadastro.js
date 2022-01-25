@@ -17,24 +17,11 @@ export default function Cadastro() {
   const [loadingData, setLoadingData] = useState(true);
   const { ciclo } = useCiclo();
 
-  const [municipio, setmunicipio] = useState("município");
   useEffect(() => {
-    async function fetchUserInfo() {
-      if (!authUser) return false;
-      const docRef = doc(db, "users", authUser.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setmunicipio(docSnap.data().municipio || "município");
-      }
-    }
-    fetchUserInfo();
-  }, [authUser]);
-
-  useEffect(() => {
-    if (municipio === "município") return null;
+    if (!authUser) return false;
     async function fetchDadosAnteriores() {
       const dadosCadastrados = collection(db, "dadosCadastrados");
-      const dadosCadRef = doc(dadosCadastrados, municipio);
+      const dadosCadRef = doc(dadosCadastrados, authUser.municipio);
       const dadosSnap = await getDoc(dadosCadRef);
       if (dadosSnap.exists()) {
         setDadosEnviados(dadosSnap.data());
@@ -42,7 +29,7 @@ export default function Cadastro() {
       setLoadingData(false);
     }
     fetchDadosAnteriores();
-  }, [municipio]);
+  }, [authUser]);
 
   //redireciona caso não logado
   useEffect(() => {

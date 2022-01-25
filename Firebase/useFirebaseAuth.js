@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react";
-import { auth } from "./auth";
+import { auth, db } from "./auth";
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { useRouter } from "next/router";
+import { doc, getDoc } from "firebase/firestore";
 
-const formatAuthUser = (user) => ({
+const formatAuthUser = (user, { nome = "", municipio = "", tipo = "" }) => ({
   uid: user.uid,
   email: user.email,
+  nome: nome,
+  displayNome: nome.replace(/ .*/, ""),
+  municipio: municipio,
+  tipo: tipo,
 });
 
 export default function useFirebaseAuth() {
@@ -26,7 +32,9 @@ export default function useFirebaseAuth() {
     }
 
     setLoading(true);
-    var formattedUser = formatAuthUser(authState);
+    const docRef = doc(db, "users", authState.uid);
+    const docSnap = await getDoc(docRef);
+    let formattedUser = formatAuthUser(authState, docSnap?.data());
     setAuthUser(formattedUser);
     setLoading(false);
   };
@@ -54,6 +62,18 @@ export default function useFirebaseAuth() {
 
   const logout = () => {
     signOut(auth);
+    router.push("/");
+  };
+
+  const resetPassword = (email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert(`Enviado email para ${email} para redefinição de senha`);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   };
 
   return {
@@ -61,5 +81,6 @@ export default function useFirebaseAuth() {
     loading,
     login,
     logout,
+    resetPassword,
   };
 }

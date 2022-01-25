@@ -5,9 +5,6 @@ import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import MenuLink from "./MenuLink";
 import { useAuth } from "../../contexts/AuthenticationContext";
-import { db } from "../../Firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
 
 const TopMenu = () => {
   const { authUser, loading, logout } = useAuth();
@@ -16,24 +13,6 @@ const TopMenu = () => {
     e.preventDefault();
     logout();
   };
-
-  //resgata o tipo de usuário e nome
-  const [tipo, setTipo] = useState("");
-  const [nome, setNome] = useState("Usuário(a)");
-  useEffect(() => {
-    async function fetchUserInfo() {
-      if (!authUser) return false;
-      const docRef = doc(db, "users", authUser.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setTipo(docSnap.data().tipo);
-        setNome(
-          `${docSnap.data().nome}/${docSnap.data().municipio}` || "Usuário(a)"
-        );
-      }
-    }
-    fetchUserInfo();
-  }, [authUser]);
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -63,12 +42,15 @@ const TopMenu = () => {
                 ),
                 estado: <MenuLink href="/validacao">Validação</MenuLink>,
                 administrador: <MenuLink href="/validacao">Validação</MenuLink>,
-              }[tipo]}
+              }[authUser.tipo]}
             <MenuLink href="/ajuda">Ajuda</MenuLink>
           </Nav>
           <Nav className="mr-auto">
             {authUser ? (
-              <NavDropdown title={nome} id="acountDropdown">
+              <NavDropdown
+                title={`${authUser.displayNome}/${authUser.municipio}`}
+                id="acountDropdown"
+              >
                 <NavDropdown.Item href="/alterarsenha">
                   Alterar Senha
                 </NavDropdown.Item>
