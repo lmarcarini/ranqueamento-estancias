@@ -2,12 +2,8 @@ import PerguntaForm from "./PerguntaForm.js";
 import perguntas_a1 from "../../scripts/perguntas_a1.json";
 import perguntas_a3 from "../../scripts/perguntas_a3.json";
 import perguntas_a4 from "../../scripts/perguntas_a4.json";
-import { useEffect } from "react";
 
 export default function SectionA({ id, dadosAnteriores }) {
-  useEffect(() => {
-    console.log(dadosAnteriores);
-  }, [dadosAnteriores]);
   return (
     <>
       <h4 id={id}>Atendimento à legislação</h4>

@@ -14,11 +14,8 @@ import { useAuth } from "../contexts/AuthenticationContext";
 import { doc, setDoc, getDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/router";
 import gabarito from "../scripts/respostas";
-
-const replacePergunta = (perguntas, id, newValue) => {
-  perguntas[id] = { resposta: newValue, cabecalho: gabarito.cabecalho[id] };
-  return perguntas;
-};
+import { storage } from "../Firebase/auth";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function CadastroForm() {
   const { authUser, loading } = useAuth();
@@ -27,15 +24,13 @@ export default function CadastroForm() {
     perguntas: {},
     pleitos: {},
   });
-  const [dados, setdados] = useState({ ano: 2020, perguntas: {}, pleitos: {} });
+  const [dados, setdados] = useState({ ano: 2022, perguntas: {}, pleitos: {} });
+  const [filesToUpload, setFilesToUpload] = useState([]);
   const [score, setscore] = useState(0);
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (!authUser && !loading) router.push("/");
-  }, [authUser, loading, router]);
-
+  //Carrega Último cadastro
   useEffect(() => {
     if (!authUser) return false;
     async function fetchDadosAnteriores() {
@@ -50,72 +45,92 @@ export default function CadastroForm() {
     fetchDadosAnteriores();
   }, [authUser]);
 
+  //firstload score
+  useEffect(() => {
+    if (loadingOldData) return null;
+    let form = document.getElementById("dados");
+    if (form) setdados(formatDados(form));
+  }, [loadingOldData, dadosAnteriores]);
+
+  //Update score
   useEffect(() => {
     setscore(pontuacao(dados));
   }, [dados]);
 
-  const addPleito = (pleito) => {
-    setdados({
-      ...dados,
-      pleitos: {
-        ...dados.pleitos,
-        [pleito.id.slice(1)]: {
-          nome: pleito.querySelector("#nome").value,
-          valor: pleito.querySelector("#valor").value,
-          situacao: pleito.querySelector("#situacao").value,
-          tipo: pleito.querySelector("#tipo").value,
-        },
-      },
-    });
+  //format Dados
+  const formatDados = (form) => {
+    const data = Object.fromEntries(new FormData(form).entries());
+    return {
+      ano: dados.ano,
+      municipio: authUser.municipio,
+      funcionario: authUser.nome,
+      data: new Date().toLocaleString("pt-BR"),
+      perguntas: Object.entries(data).reduce((acc, [codigo, resposta]) => {
+        if (codigo[0] === "a" || codigo[0] === "c")
+          acc[codigo] = {
+            resposta: resposta,
+            cabecalho: gabarito.cabecalho[codigo],
+          };
+        return acc;
+      }, {}),
+      pleitos: Object.entries(data)
+        .filter((x) => /^pleito/.test(x))
+        .reduce((pleitos, [x, value]) => {
+          let [_, type, codigo] = x.split("_");
+          if (!pleitos[codigo]) pleitos[codigo] = {};
+          pleitos[codigo][type] = value;
+          return pleitos;
+        }, {}),
+    };
   };
 
   const handleChange = (e) => {
-    if (e.target.type === "radio")
-      setdados({
-        ...dados,
-        perguntas: replacePergunta(
-          dados.perguntas,
-          e.target.name,
-          e.target.value
-        ),
-      });
-    else {
-      let pleito = e.target.parentNode;
-      if (pleito.id.charAt(0) === "b") addPleito(pleito);
-    }
+    let form = e.target.form;
+    setdados(formatDados(form));
   };
 
-  const excluirPleito = (id) => {
-    let copyDados = { ...dados };
-    delete copyDados.pleitos[id];
-    setdados(copyDados);
+  const uploadFile = async ([codigo, file]) => {
+    const storageRef = ref(storage, `temp/${codigo}`);
+    const snapshot = await uploadBytes(storageRef, file);
+    let url = await getDownloadURL(snapshot.ref);
+    return { codigo: codigo.split("_")[1], url: url };
   };
 
+  //Lida com o envio do cadastro
   const [show, setshow] = useState(false);
-
   const handleClose = () => setshow(false);
   const handleShow = () => setshow(true);
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    let form = e.target;
+    const data = Array.from(new FormData(form).entries());
+    setFilesToUpload(data.filter(([name, _]) => name.split("_")[0] === "file"));
     handleShow();
   };
-
   const handleSend = () => {
     async function cadastrarFirestore() {
-      await setDoc(doc(db, "dadosCadastrados", authUser.municipio), {
-        ano: dados.ano,
-        municipio: authUser.municipio,
-        funcionario: authUser.nome,
-        data: new Date().toLocaleString("pt-BR"),
-        perguntas: { ...dados.perguntas },
-        pleitos: { ...dados.pleitos },
-      });
+      const resultado = await Promise.all(
+        filesToUpload.map(async (file) => uploadFile(file))
+      );
+      let dadosParaEnvio = { ...dados };
+      resultado.forEach(
+        ({ codigo, url }) => (dadosParaEnvio.perguntas[codigo]["url"] = url)
+      );
+      console.log(dadosParaEnvio);
+      await setDoc(
+        doc(db, "dadosCadastrados", authUser.municipio),
+        dadosParaEnvio
+      );
       window.location.href = "/cadastro#sucesso";
+      console.log("sucesso");
     }
     cadastrarFirestore();
   };
 
+  //handle redirects
+  useEffect(() => {
+    if (!authUser && !loading) router.push("/");
+  }, [authUser, loading, router]);
   if (loading) return <div>Carregando...</div>;
   if (!authUser) return <div>Não autorizado</div>;
   if (loadingOldData) return <div>Carregando...</div>;
@@ -137,11 +152,7 @@ export default function CadastroForm() {
         <hr />
         <SectionA id="secaoA" dadosAnteriores={dadosAnteriores} />
         <hr />
-        <SectionB
-          id="secaoB"
-          excluirPleito={excluirPleito}
-          dadosAnteriores={dadosAnteriores}
-        />
+        <SectionB id="secaoB" dadosAnteriores={dadosAnteriores} />
         <hr />
         <SectionC id="secaoC" dadosAnteriores={dadosAnteriores} />
 

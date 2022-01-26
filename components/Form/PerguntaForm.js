@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import InfoIcon from "./InfoIcon";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import UploadFileInterface from "./UploadFileInterface";
 
 export default function PerguntaForm({
   cabecalho,
@@ -11,6 +12,7 @@ export default function PerguntaForm({
   info,
   resposta,
 }) {
+  const [file, setFile] = useState(null);
   const [fileIsShown, setfileIsShown] = useState(false);
   const toggleFile = (e) => {
     setfileIsShown(
@@ -18,12 +20,14 @@ export default function PerguntaForm({
     );
   };
 
-  const [validated, setValidated] = useState("false");
+  const handleSetFile = (e) => {
+    setFile(e.target.files[0]);
+  };
 
   return (
     <>
       <Form.Group
-        validated={validated}
+        validated="false"
         className="mb-3"
         controlId="formA1"
         onChange={toggleFile}
@@ -57,7 +61,14 @@ export default function PerguntaForm({
       </Form.Group>
       {fileIsShown && (
         <Row className="mb-3">
-          <Form.Control type="file" required />
+          <Form.Control
+            type="file"
+            name={"file_" + codigo}
+            id={"file_" + codigo}
+            onChange={handleSetFile}
+            accept=".pdf"
+            required
+          />
         </Row>
       )}
     </>
