@@ -18,10 +18,7 @@ export default function VisualizadorDados({ dados, final = false }) {
       <hr />
       <h5>Respostas</h5>
       {Object.entries(dados.perguntas)
-        .sort((a, b) => {
-          console.log(a[0]);
-          return a[0].localeCompare(b[0]);
-        })
+        .sort((a, b) => a[0].localeCompare(b[0]))
         .map(([id, { cabecalho, resposta, validacao, justificativa, url }]) => (
           <div key={id} className="mb-2">
             <h6>{cabecalho}</h6>

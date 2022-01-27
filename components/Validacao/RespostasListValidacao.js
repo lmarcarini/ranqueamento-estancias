@@ -1,26 +1,42 @@
 import ValidacaoModal from "./ValidacaoModal";
 import gabarito from "../../scripts/respostas.json";
 
-export default function RespostasListValidacao({ perguntas, handleValidacao }) {
+export default function RespostasListValidacao({
+  perguntas = {},
+  handleValidacao,
+}) {
   return (
     <>
       <h5>Respostas</h5>
-      {perguntas.map(
-        ({ id, cabecalho, resposta, validacao, justificativa }) => (
+      {Object.entries(perguntas)
+        .sort((a, b) => {
+          return a[0].localeCompare(b[0]);
+        })
+        .map(([id, { cabecalho, resposta, validacao, justificativa, url }]) => (
           <div key={id} className="mb-2">
             <h6>{cabecalho}</h6>
             <p>Resposta: {" " + resposta}</p>
-            {validacao !== "false" && (
+            {validacao && (
               <>
-                <p style={{ color: "red" }}>Validada: {" " + validacao}</p>
-                <p style={{ color: "red" }}>
-                  Justificativa: {" " + justificativa}
+                <p
+                  style={
+                    resposta === validacao
+                      ? { color: "green" }
+                      : { color: "red" }
+                  }
+                >
+                  Validada: {" " + validacao}
                 </p>
+                {justificativa !== "" && (
+                  <p style={{ color: "red" }}>
+                    Justificativa: {" " + justificativa}
+                  </p>
+                )}
               </>
             )}
-            {true && (
+            {url && (
               <p>
-                <a href="link.html">Comprovante</a>
+                <a href={url}>Anexo{"-" + id}</a>
               </p>
             )}
             <ValidacaoModal
@@ -31,8 +47,7 @@ export default function RespostasListValidacao({ perguntas, handleValidacao }) {
               handleValidacao={handleValidacao}
             ></ValidacaoModal>
           </div>
-        )
-      )}
+        ))}
     </>
   );
 }

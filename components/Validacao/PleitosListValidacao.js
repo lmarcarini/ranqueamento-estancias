@@ -1,15 +1,15 @@
 import ValidacaoPleitoModal from "./ValidacaoPleitoModal";
 
 export default function PleitosListValidacao({
-  pleitos,
+  pleitos = {},
   handleValidacaoPleito,
 }) {
   return (
     <>
       <h5>Pleitos</h5>
-      {pleitos.map((pleito, i) => (
+      {Object.entries(pleitos).map(([_, pleito], i) => (
         <div key={i} className="mb-2">
-          <h6># {i + 1 + " " + pleito.nome}</h6>
+          <h6># {i + 1 + ": " + pleito.nome}</h6>
           <p>Situação: {" " + pleito.situacao}</p>
           {pleito.situacaoValidado && (
             <p style={{ color: "red" }}>

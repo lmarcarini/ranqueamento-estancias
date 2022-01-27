@@ -1,28 +1,31 @@
-import mockData from "../scripts/mock2.json";
-import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import PleitosListValidacao from "./Validacao/PleitosListValidacao";
 import RespostasListValidacao from "./Validacao/RespostasListValidacao";
+import Container from "react-bootstrap/Container";
+import { useAuth } from "../contexts/AuthenticationContext";
+import { db } from "../Firebase/auth";
+import { setDoc, collection, doc } from "firebase/firestore";
 
 export default function ValidarForm({
-  dados = { municipio: "Carregando", pleitos: "", perguntas: "" },
+  dados = {
+    ano: "carregando",
+    municipio: "Carregando",
+    pleitos: {},
+    perguntas: {},
+  },
 }) {
+  const { authUser } = useAuth();
   const [dadosValidados, setDadosValidados] = useState({});
 
   useEffect(() => {
-    setDadosValidados({ ...mockData });
+    setDadosValidados({ ...dados });
   }, []);
 
-  useEffect(() => {
-    console.log(dadosValidados);
-  }, [dadosValidados]);
-
-  const handleValidacao = (id, opcao, justificativa) => {
+  const handleValidacao = (id, justificativa, opcao) => {
     let perguntas = dadosValidados.perguntas;
-    let i = perguntas.findIndex((p) => p.id === id);
-    perguntas[i]["validacao"] = opcao;
-    perguntas[i]["justificativa"] = justificativa;
+    perguntas[id]["validacao"] = opcao;
+    perguntas[id]["justificativa"] = justificativa;
     setDadosValidados({ ...dadosValidados, perguntas: perguntas });
   };
 
@@ -42,25 +45,40 @@ export default function ValidarForm({
   //TODO
   const handleSubmit = (e) => {
     e.preventDefault();
+    let dadosAEnviar = { ...dados };
+    dadosAEnviar["validado"] === "verdadeiro";
+    dadosAEnviar["validadoPor"] === authUser.nome;
+    dadosAEnviar["validadoEm"] === new Date().toLocaleString("pt-BR");
+    const enviarValidacao = async () => {
+      let cadastrosRef = collection(db, "dadosCadastrados");
+      await setDoc(doc(cadastrosRef, dados.municipio), dadosAEnviar);
+      alert("Dados enviados com sucesso!");
+    };
+    enviarValidacao();
   };
 
   return (
-    <Form>
+    <Container className="mt-3 border">
       <p>
         <b>Município:</b> {dados.municipio}
       </p>
       <p>
-        <b>Ano:</b> {mockData.ano}
+        <b>Ano:</b> {dados.ano}
       </p>
+      <hr />
       <RespostasListValidacao
-        perguntas={mockData.perguntas}
+        perguntas={dados.perguntas}
         handleValidacao={handleValidacao}
       />
+      <hr />
       <PleitosListValidacao
-        pleitos={mockData.pleitos}
+        pleitos={dados.pleitos}
         handleValidacaoPleito={handleValidacaoPleito}
       />
-      <Button onClick={handleSubmit}>Registrar alterações</Button>
-    </Form>
+      <hr />
+      <Button onClick={handleSubmit} className="mb-3">
+        Registrar alterações
+      </Button>
+    </Container>
   );
 }

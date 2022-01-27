@@ -23,7 +23,11 @@ export default function ValidacaoModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleValidacao(id, valueSelected, justificativa);
+    let form = e.target;
+    const { justificativa, resposta } = Object.fromEntries(
+      new FormData(form).entries()
+    );
+    handleValidacao(id, justificativa, resposta);
     handleClose();
   };
 
@@ -32,35 +36,45 @@ export default function ValidacaoModal({
       <Button variant="danger" onClick={handleShow}>
         Validar
       </Button>
+
       <Modal show={show}>
-        <Modal.Header>{cabecalho}</Modal.Header>
-        <Modal.Body>
-          <p>Resposta:</p>
-          <p>{resposta}</p>
-          {Object.entries(opcoes).map(([opcao], i) => (
-            <Form.Check
-              type="radio"
-              key={i}
-              id={i}
-              name="resposta"
-              label={opcao}
-              value={opcao}
-              onClick={handleSelect}
-            />
-          ))}
-          <Form.Control
-            onChange={handleTypeJustificativa}
-            as="textarea"
-            className="mt-2"
-            placeholder="Justificativa"
-          ></Form.Control>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleSubmit}>Confirmar </Button>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancelar
-          </Button>
-        </Modal.Footer>
+        <Form onSubmit={handleSubmit} id="validarForm">
+          <Modal.Header>{cabecalho}</Modal.Header>
+          <Modal.Body>
+            <p>Resposta:</p>
+            <p>{resposta}</p>
+            <Form.Group>
+              {Object.entries(opcoes).map(([opcao], i) => (
+                <Form.Check
+                  type="radio"
+                  key={i}
+                  id={i}
+                  name="resposta"
+                  label={opcao}
+                  value={opcao}
+                  onClick={handleSelect}
+                  required
+                />
+              ))}
+            </Form.Group>
+            <Form.Control
+              onChange={handleTypeJustificativa}
+              as="textarea"
+              className="mt-2"
+              type="text"
+              name="justificativa"
+              placeholder="Justificativa"
+            ></Form.Control>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button type="submit" form="validarForm">
+              Confirmar
+            </Button>
+            <Button variant="secondary" onClick={handleClose}>
+              Cancelar
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );

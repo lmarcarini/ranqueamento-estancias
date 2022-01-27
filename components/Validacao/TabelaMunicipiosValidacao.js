@@ -4,8 +4,7 @@ export default function TabelaMunicipiosValidacao({
   listaMunicipios,
   handleSelecionar,
 }) {
-  const handleClick = (e, nome) => {
-    console.log(nome);
+  const handleClick = (nome) => {
     handleSelecionar(nome);
   };
 
@@ -21,9 +20,9 @@ export default function TabelaMunicipiosValidacao({
       </thead>
       <tbody>
         {listaMunicipios.map(
-          ({ posicao, nome, pontuacao, pontuacaoValidada = "-" }, i) => (
-            <tr key={i} onClick={(e) => handleClick(e, nome)}>
-              <td>{posicao}</td>
+          ({ nome, pontuacao, pontuacaoValidada = "-" }, i) => (
+            <tr key={i} onClick={(_) => handleClick(nome)}>
+              <td>{i + 1}</td>
               <td>{nome}</td>
               <td>{pontuacao}</td>
               <td>{pontuacaoValidada}</td>
