@@ -17,14 +17,18 @@ export default function VisualizadorDados({ dados, final = false }) {
 
       <hr />
       <h5>Respostas</h5>
-      {Object.entries(dados.perguntas).map(
-        ([id, { cabecalho, resposta, validacao, justificativa }]) => (
+      {Object.entries(dados.perguntas)
+        .sort((a, b) => {
+          console.log(a[0]);
+          return a[0].localeCompare(b[0]);
+        })
+        .map(([id, { cabecalho, resposta, validacao, justificativa, url }]) => (
           <div key={id} className="mb-2">
             <h6>{cabecalho}</h6>
             <p>Resposta: {" " + resposta}</p>
-            {true && (
+            {url && (
               <p>
-                <a href="link.html">Anexo</a>
+                <a href={url}>Anexo {id}</a>
               </p>
             )}
             {final && validacao !== "false" && (
@@ -40,8 +44,7 @@ export default function VisualizadorDados({ dados, final = false }) {
               </>
             )}
           </div>
-        )
-      )}
+        ))}
       <hr />
       <h5>Pleitos</h5>
       {dados.pleitos ? (
