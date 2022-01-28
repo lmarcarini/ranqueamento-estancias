@@ -41,7 +41,13 @@ const TopMenu = () => {
                   </>
                 ),
                 estado: <MenuLink href="/validacao">Validação</MenuLink>,
-                administrador: <MenuLink href="/validacao">Validação</MenuLink>,
+                admin: (
+                  <>
+                    <MenuLink href="/validacao">Validação</MenuLink>
+                    <MenuLink href="/gerenciarusuarios">Usuários</MenuLink>
+                    <MenuLink href="/gerenciar">Gerenciar</MenuLink>
+                  </>
+                ),
               }[authUser.tipo]}
             <MenuLink href="/ajuda">Ajuda</MenuLink>
           </Nav>
