@@ -1,33 +1,34 @@
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect } from "react";
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
+import { db } from "../Firebase/auth";
 import DataEvento from "./DataEvento";
 
 export default function Calendar() {
-  const [datas, setdatas] = useState([
-    { data: new Date(2021, 11, 5), descricao: "Cadastro das informações" },
+  const [datas, setdatas] = useState([]);
 
-    {
-      data: new Date(2022, 2, 2),
-      descricao: "Divulgação de resultados",
-    },
-    {
-      data: new Date(2022, 3, 2),
-      descricao: "Último dia para recurso de pontuação",
-    },
-    {
-      data: new Date(2022, 4, 2),
-      descricao: "Resultado após recursos",
-    },
-  ]);
+  useEffect(() => {
+    const fetchEventos = async () => {
+      let eventosRef = collection(db, "eventos");
+      const eventosSnap = await getDocs(eventosRef);
+      setdatas(
+        eventosSnap.docs
+          .map((doc) => doc.data())
+          .sort((a, b) => a.date.localeCompare(b.date))
+      );
+    };
+    fetchEventos();
+  }, []);
 
   return (
     <Card>
       <Card.Body>
         <Card.Title>Calendário</Card.Title>
 
-        {datas.map(({ data, descricao }, i) => (
-          <DataEvento key={i} data={data}>
-            {descricao}
+        {datas.map(({ date, nome }, i) => (
+          <DataEvento key={i} data={date}>
+            {nome}
           </DataEvento>
         ))}
       </Card.Body>

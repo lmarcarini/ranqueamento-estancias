@@ -46,6 +46,7 @@ const TopMenu = () => {
                     <MenuLink href="/validacao">Validação</MenuLink>
                     <MenuLink href="/gerenciarusuarios">Usuários</MenuLink>
                     <MenuLink href="/gerenciar">Gerenciar</MenuLink>
+                    <MenuLink href="/eventos">Eventos</MenuLink>
                   </>
                 ),
               }[authUser.tipo]}
