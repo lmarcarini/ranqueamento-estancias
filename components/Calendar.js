@@ -24,7 +24,7 @@ export default function Calendar({ datas }) {
       <Card.Body>
         <Card.Title>Calendário</Card.Title>
 
-        {!datas ? (
+        {datas ? (
           datas.map(({ date, nome }, i) => (
             <DataEvento key={i} data={date}>
               {nome}
