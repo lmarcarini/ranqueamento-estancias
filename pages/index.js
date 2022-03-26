@@ -1,7 +1,9 @@
 import Container from "react-bootstrap/Container";
 import Calendar from "../components/Calendar";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../Firebase/auth";
 
-export default function Home() {
+export default function Home({ datas }) {
   return (
     <Container className="mt-3">
       <h4>
@@ -27,7 +29,22 @@ export default function Home() {
           recurso.
         </b>
       </p>
-      <Calendar />
+      <Calendar datas={datas} />
     </Container>
   );
+}
+
+export async function getStaticProps() {
+  let eventosRef = collection(db, "eventos");
+  const eventosSnap = await getDocs(eventosRef);
+  const datas = eventosSnap.docs
+    .map((doc) => doc.data())
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  return {
+    props: {
+      datas,
+    },
+    revalidate: 120,
+  };
 }

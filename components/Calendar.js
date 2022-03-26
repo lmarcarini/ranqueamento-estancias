@@ -1,36 +1,43 @@
-import { collection, getDocs } from "firebase/firestore";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Placeholder } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { db } from "../Firebase/auth";
+
 import DataEvento from "./DataEvento";
 
-export default function Calendar() {
-  const [datas, setdatas] = useState([]);
+export default function Calendar({ datas }) {
+  // const [datas, setdatas] = useState([]);
 
-  useEffect(() => {
-    const fetchEventos = async () => {
-      let eventosRef = collection(db, "eventos");
-      const eventosSnap = await getDocs(eventosRef);
-      setdatas(
-        eventosSnap.docs
-          .map((doc) => doc.data())
-          .sort((a, b) => a.date.localeCompare(b.date))
-      );
-    };
-    fetchEventos();
-  }, []);
+  // useEffect(() => {
+  //   const fetchEventos = async () => {
+  //     let eventosRef = collection(db, "eventos");
+  //     const eventosSnap = await getDocs(eventosRef);
+  //     setdatas(
+  //       eventosSnap.docs
+  //         .map((doc) => doc.data())
+  //         .sort((a, b) => a.date.localeCompare(b.date))
+  //     );
+  //   };
+  //   fetchEventos();
+  // }, []);
 
   return (
     <Card>
       <Card.Body>
         <Card.Title>Calendário</Card.Title>
 
-        {datas.map(({ date, nome }, i) => (
-          <DataEvento key={i} data={date}>
-            {nome}
-          </DataEvento>
-        ))}
+        {!datas ? (
+          datas.map(({ date, nome }, i) => (
+            <DataEvento key={i} data={date}>
+              {nome}
+            </DataEvento>
+          ))
+        ) : (
+          <Placeholder as="Card.Text" animation="glow">
+            <Placeholder xs="12" />
+            <Placeholder xs="12" />
+            <Placeholder xs="12" />
+            <Placeholder xs="12" />
+          </Placeholder>
+        )}
       </Card.Body>
     </Card>
   );

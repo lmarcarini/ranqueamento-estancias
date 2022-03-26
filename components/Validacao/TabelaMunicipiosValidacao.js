@@ -20,10 +20,10 @@ export default function TabelaMunicipiosValidacao({
       </thead>
       <tbody>
         {listaMunicipios.map(
-          ({ nome, pontuacao, pontuacaoValidada = "-" }, i) => (
-            <tr key={i} onClick={(_) => handleClick(nome)}>
+          ({ municipio, pontuacao, pontuacaoValidada = "-" }, i) => (
+            <tr key={i} onClick={(_) => handleClick(municipio)}>
               <td>{i + 1}</td>
-              <td>{nome}</td>
+              <td>{municipio}</td>
               <td>{pontuacao}</td>
               <td>{pontuacaoValidada}</td>
             </tr>
