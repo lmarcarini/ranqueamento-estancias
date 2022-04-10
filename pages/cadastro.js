@@ -4,7 +4,7 @@ import VisualizadorDados from "../components/VisualizadorDados";
 import { useEffect, useState } from "react";
 import DadosEnviadosModal from "../components/DadosEnviadosModal";
 import { useCiclo } from "../contexts/CicloContext";
-import Link from "next/link";
+import FormContainer from "../components/Form/FormContainer";
 import { useAuth } from "../contexts/AuthenticationContext";
 import { useRouter } from "next/router";
 import { db } from "../Firebase/auth";
@@ -18,6 +18,7 @@ export default function Cadastro() {
   const { ciclo } = useCiclo();
 
   useEffect(() => {
+    const abortController = new AbortController();
     if (!authUser) return false;
     async function fetchDadosAnteriores() {
       const dadosCadastrados = collection(db, "dadosCadastrados");
@@ -29,7 +30,15 @@ export default function Cadastro() {
       setLoadingData(false);
     }
     fetchDadosAnteriores();
+    return () => {
+      abortController.abort();
+    };
   }, [authUser]);
+
+  const [cadastrando, setCadastrando] = useState(false);
+  const handleStartForm = () => {
+    setCadastrando(true);
+  };
 
   //redireciona caso não logado
   useEffect(() => {
@@ -39,14 +48,13 @@ export default function Cadastro() {
   if (!authUser && !loading) return <div>Não autorizado</div>;
   return (
     <Container className="mt-3">
-      {ciclo === "cadastroAberto" && (
-        <Link href="/form" passHref>
-          <Button className="mt-3" href="/form">
-            {dadosEnviados ? "Alterar dados cadastrados" : "Cadastrar dados"}
-          </Button>
-        </Link>
+      {cadastrando && <FormContainer dadosAnteriores={dadosEnviados} />}
+      {ciclo === "cadastroAberto" && !cadastrando && (
+        <Button className="mt-3" onClick={handleStartForm}>
+          {dadosEnviados ? "Alterar dados cadastrados" : "Cadastrar dados"}
+        </Button>
       )}
-      {ciclo === "cadastroAberto" ? (
+      {ciclo === "cadastroAberto" && !cadastrando ? (
         dadosEnviados && !loadingData ? (
           <VisualizadorDados dados={dadosEnviados} />
         ) : (

@@ -3,7 +3,6 @@ import Form from "react-bootstrap/Form";
 import InfoIcon from "./InfoIcon";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import UploadFileInterface from "./UploadFileInterface";
 
 export default function PerguntaForm({
   cabecalho,
@@ -11,9 +10,14 @@ export default function PerguntaForm({
   opcoes,
   info,
   resposta,
+  descricaoanexo,
 }) {
   const [file, setFile] = useState(null);
-  const [fileIsShown, setfileIsShown] = useState(false);
+  const [fileIsShown, setfileIsShown] = useState(
+    opcoes.find((opcao) => opcao.value === resposta)
+      ? opcoes.find((opcao) => opcao.value === resposta).file
+      : false
+  );
   const toggleFile = (e) => {
     setfileIsShown(
       e.target.id !== "" && opcoes[e.target.id.match(/(?<=_)[^_]*$/)[0]].file
@@ -32,8 +36,10 @@ export default function PerguntaForm({
         controlId="formA1"
         onChange={toggleFile}
       >
-        <Form.Label>{cabecalho}</Form.Label>
-        <InfoIcon>{info}</InfoIcon>
+        <Form.Label as="h6">
+          {cabecalho} <InfoIcon>{info}</InfoIcon>
+        </Form.Label>
+
         {opcoes.map((opcao, i) => (
           <Row key={i}>
             <Col md="auto">
@@ -60,16 +66,21 @@ export default function PerguntaForm({
         ))}
       </Form.Group>
       {fileIsShown && (
-        <Row className="mb-3">
-          <Form.Control
-            type="file"
-            name={"file_" + codigo}
-            id={"file_" + codigo}
-            onChange={handleSetFile}
-            accept=".pdf"
-            required
-          />
-        </Row>
+        <>
+          <Form.Label>
+            <i>Anexo: {descricaoanexo}</i>
+          </Form.Label>
+          <Row className="mb-3">
+            <Form.Control
+              type="file"
+              name={"file_" + codigo}
+              id={"file_" + codigo}
+              onChange={handleSetFile}
+              accept=".pdf"
+              required
+            />
+          </Row>
+        </>
       )}
     </>
   );

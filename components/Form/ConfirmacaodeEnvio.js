@@ -10,10 +10,11 @@ export default function ConfirmacaodeEnvio({ show, handleClose, handleSend }) {
         </Modal.Header>
         <Modal.Body>
           <p>
-            As informações serão conferidas pela Secretaria de Turísmo de São
-            Paulo e a pontuação poderá ser alterada. As informações
-            sobreescreverão quaisquer informação enviada anteriormente para este
-            ranqueamento. Você deseja realizar o envio?
+            As informações serão conferidas pela equipe técnica da Secretaria de
+            Turismo do Estado de São Paulo, e a pontuação poderá ser alterada
+            após analisado todos os anexos. As informações sobrescreverão
+            qualquer informação enviada anteriormente para este ranqueamento.
+            Você deseja realizar o envio?
           </p>
         </Modal.Body>
         <Modal.Footer>

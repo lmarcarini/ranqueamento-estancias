@@ -1,19 +1,19 @@
 [{"cabecalho":"A.3.1 Água potável",
-    "info":"info",
+    "info":"Certidões emitidas pelos órgãos oficiais competentes para efeito de comprovação dos requisitos estabelecidos no inciso V do artigo 2º da lei n° 1.261 de 29 de abril de 2015.",
     "codigo":"a3_1", 
     "opcoes":[
     { "value": "Sim", "file": true, "pontuacao": 2.8 },
     { "value": "Não", "file": false, "pontuacao": 0 }
   ]},
   {"cabecalho":"A.3.2 Sistema de coleta e tratamento de esgotos",
-    "info":"info",
+    "info":"Certidões emitidas pelos órgãos oficiais competentes para efeito de comprovação dos requisitos estabelecidos no inciso V do artigo 2º da lei n° 1.261 de 29 de abril de 2015.",
     "codigo":"a3_2", 
     "opcoes":[
       { "value": "Sim", "file": true, "pontuacao": 2.8 },
       { "value": "Não", "file": false, "pontuacao": 0 }
     ]},
     {"cabecalho":"A.3.3 Gestão de resíduos sólidos",
-      "info":"info",
+      "info":"Certidões emitidas pelos órgãos oficiais competentes para efeito de comprovação dos requisitos estabelecidos no inciso V do artigo 2º da lei n° 1.261 de 29 de abril de 2015.",
       "codigo":"a3_3", 
       "opcoes":[
         { "value": "Sim", "file": true, "pontuacao": 2.8 },

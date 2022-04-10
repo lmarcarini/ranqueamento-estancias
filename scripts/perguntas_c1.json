@@ -1,15 +1,8 @@
 [{"cabecalho":"C.1.1 COMTUR composto por partícipes de 1/3 da iniciativa pública e 2/3 da iniciativa privada",
-    "info":"info",
+    "info":"Os conselhos municipais são ferramentas de participação ativa dos cidadãos no processo de elaboração de políticas públicas. O art. 29, XII da Constituição Federal determina a cooperação das associações representativas no planejamento municipal, demonstrando o papel fundamental a ser exercido pelos conselhos municipais. Os conselhos municipais são compostos por representantes da Prefeitura Municipal e da sociedade civil. O caráter permanente desses conselhos possibilita que a participação do cidadão efetivamente se converta na formulação, implementação e avaliação das políticas públicas municipais.",
     "codigo":"c1_1", 
     "opcoes":[
     { "value": "Sim", "file": true, "pontuacao": 2 },
     { "value": "Não", "file": false, "pontuacao": 0.5 }
-  ]},
-  {"cabecalho":"C.1.2 Atas das ultimas seis reuniões do COMTUR",
-    "info":"info",
-    "codigo":"c1_2", 
-    "opcoes":[
-      { "value": "Sim", "file": true, "pontuacao": 1 },
-      { "value": "Não", "file": false, "pontuacao": 0 }
-    ]}
+  ]}
 ]

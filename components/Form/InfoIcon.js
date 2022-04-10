@@ -25,9 +25,7 @@ export default function InfoIcon({ children }) {
         backdrop={true}
         onHide={onHide}
       >
-        <Modal.Body>
-          <p>{children}</p>
-        </Modal.Body>
+        <Modal.Body>{children}</Modal.Body>
         <Modal.Footer>
           <Button onClick={onHide}>Fechar</Button>
         </Modal.Footer>

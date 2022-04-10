@@ -1,60 +1,36 @@
 import PerguntaForm from "./PerguntaForm.js";
-import perguntas_a1 from "../../scripts/perguntas_a1.json";
-import perguntas_a3 from "../../scripts/perguntas_a3.json";
-import perguntas_a4 from "../../scripts/perguntas_a4.json";
+import perguntas from "../../scripts/perguntas.json";
 
 export default function SectionA({ id, dadosAnteriores }) {
+  const fillPergunta = (codigo) => (
+    <PerguntaForm
+      cabecalho={perguntas[codigo].cabecalho}
+      info={perguntas[codigo].info}
+      codigo={codigo}
+      opcoes={perguntas[codigo].opcoes}
+      descricaoanexo={perguntas[codigo].descricaoanexo}
+      resposta={
+        dadosAnteriores?.perguntas &&
+        dadosAnteriores?.perguntas[codigo]?.resposta
+      }
+    ></PerguntaForm>
+  );
   return (
     <>
-      <h4 id={id}>Atendimento à legislação</h4>
-      {perguntas_a1.map(({ cabecalho, info, codigo, opcoes }) => (
-        <PerguntaForm
-          cabecalho={cabecalho}
-          info={info}
-          key={codigo}
-          codigo={codigo}
-          opcoes={opcoes}
-          resposta={
-            dadosAnteriores?.perguntas &&
-            dadosAnteriores?.perguntas[codigo]?.resposta
-          }
-        ></PerguntaForm>
-      ))}
+      <h4 id={id}>A) Atendimento à legislação</h4>
+      {fillPergunta("a1")}
+      {fillPergunta("a2")}
+      <h6>A.3 Certidões emitidas que comprovem:</h6>
+      {fillPergunta("a3_1")}
+      {fillPergunta("a3_2")}
+      {fillPergunta("a3_3")}
 
-      <h5>A.3 Certidões emitidas que comprovem:</h5>
-
-      {perguntas_a3.map(({ cabecalho, info, codigo, opcoes }) => (
-        <PerguntaForm
-          cabecalho={cabecalho}
-          info={info}
-          key={codigo}
-          codigo={codigo}
-          opcoes={opcoes}
-          resposta={
-            dadosAnteriores?.perguntas &&
-            dadosAnteriores?.perguntas[codigo]?.resposta
-          }
-        ></PerguntaForm>
-      ))}
-
-      <h5>
+      <h6>
         A.4 Cópia do plano diretor de turismo com ata das últimas seis reuniões
         do COMTUR:
-      </h5>
-
-      {perguntas_a4.map(({ cabecalho, info, codigo, opcoes }) => (
-        <PerguntaForm
-          cabecalho={cabecalho}
-          info={info}
-          key={codigo}
-          codigo={codigo}
-          opcoes={opcoes}
-          resposta={
-            dadosAnteriores?.perguntas &&
-            dadosAnteriores?.perguntas[codigo]?.resposta
-          }
-        ></PerguntaForm>
-      ))}
+      </h6>
+      {fillPergunta("a4_1")}
+      {fillPergunta("a4_2")}
     </>
   );
 }

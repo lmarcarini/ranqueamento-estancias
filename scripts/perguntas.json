@@ -1,0 +1,153 @@
+{
+    "ano":2022,
+    "a1":{"cabecalho":"A.1 Estudo de demanda turística existente nos dois anos anteriores a apresentação dos dados",
+        "info":"Estudo da demanda turística existente nos 2 (dois) anos anteriores à apresentação do dos dados, a ser realizado pela Prefeitura Municipal em convênio com órgão público estadual, federal, instituição de ensino superior ou entidade especializada. Para maiores informações no site https://www.turismo.sp.gov.br tem disponível o modelo para pesquisa de demanda.",
+        "codigo":"a1", 
+        "descricaoanexo":"inserir o estudo de demanda",
+        "opcoes":[
+        { "value": "estudo atualizado dos ultimos dois anos realizado por equipe especializada", "file": true, "pontuacao": 8.3 },
+        { "value": "estudo atualizado dos ultimos dois anos realizado por equipe da prefeitura", "file": true, "pontuacao": 6.3 },
+        { "value": "estudo atualizado dos ultimos tres a cinco anos realizado por equipe especializada", "file": true, "pontuacao": 5.3 },
+        { "value": "estudo atualizado dos ultimos tres a cinco anos realizado por equipe da prefeitura", "file": true, "pontuacao": 4.3 },
+        { "value": "estudo atualizado há mais de cinco anos realizado por equipe especializada", "file": true, "pontuacao": 3.3 },
+        { "value": "estudo atualizado há mais de cinco anos realizado por equipe da prefeitura", "file": true, "pontuacao": 2.3 },
+        { "value": "não tem estudo de demanda turística", "file": false, "pontuacao": 0 }
+    ]},
+    "a2":{"cabecalho":"A.2 Inventário turísticos dos ATRATIVOS, EQUIPAMENTOS E INFRA-ESTRUTURA dos municípios - plataforma da Secretaria de Estado de Turismo",
+    "info":"Inventário dos atrativos turísticos, dos equipamentos e serviços turísticos do município com suas respectivas localizações e vias de acesso, além do inventário da infraestrutura de apoio turístico. Para maiores informações sobre a plataforma do inventario turístico entrar em contato com Secretaria de Estado de Turismo de São Paulo.",
+    "codigo":"a2", 
+    "descricaoanexo":"inserir o certificado de conclusão do preenchimento dos dados na plataforma",
+    "opcoes":[
+    { "value": "Preenchimento realizado e atualizado nos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo", "file": true, "pontuacao": 8.3 },
+    { "value": "Preenchimento realizado anterior aos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo", "file": true, "pontuacao": 4.3 }
+    ]},
+    "a3_1":{"cabecalho":"A.3.1 Água potável",
+        "info":"Certidões emitidas pelos órgãos oficiais competentes para efeito de comprovação dos requisitos estabelecidos no inciso V do artigo 2º da lei n° 1.261 de 29 de abril de 2015.",
+        "codigo":"a3_1", 
+        "descricaoanexo":"inserir certidão de água potável",
+        "opcoes":[
+        { "value": "Sim", "file": true, "pontuacao": 2.8 },
+        { "value": "Não", "file": false, "pontuacao": 0 }
+    ]},
+    "a3_2":{"cabecalho":"A.3.2 Sistema de coleta e tratamento de esgotos",
+        "info":"Certidões emitidas pelos órgãos oficiais competentes para efeito de comprovação dos requisitos estabelecidos no inciso V do artigo 2º da lei n° 1.261 de 29 de abril de 2015.",
+        "codigo":"a3_2", 
+        "descricaoanexo": "inserir certidão de sistema de coleta e tratamento de esgotos",
+        "opcoes":[
+            { "value": "Sim", "file": true, "pontuacao": 2.8 },
+            { "value": "Não", "file": false, "pontuacao": 0 }
+    ]},
+    "a3_3":{"cabecalho":"A.3.3 Gestão de resíduos sólidos",
+        "info":"Certidões emitidas pelos órgãos oficiais competentes para efeito de comprovação dos requisitos estabelecidos no inciso V do artigo 2º da lei n° 1.261 de 29 de abril de 2015.",
+        "codigo":"a3_3",
+        "descricaoanexo": "inserir certidão de gestão de resíduos sólidos",
+        "opcoes":[
+        { "value": "Sim", "file": true, "pontuacao": 2.8 },
+        { "value": "Não", "file": false, "pontuacao": 0 }
+        ]},
+    "a4_1":{"cabecalho":"A.4.1 Plano diretor de turismo",
+        "info":"Atas das 6 (seis) últimas reuniões do Conselho Municipal de Turismo, devidamente registradas em cartório ou publicadas em imprensa oficial. As atas devem conter assinatura de todos os participantes ou folha de registro dos participantes.",
+        "codigo":"a4_1",
+        "descricaoanexo": "inserir atas das 6 (seis) últimas reuniões do Conselho Municipal de Turismo",
+        "opcoes":[
+        { "value": "Plano diretor realizado nos ultimos cinco anos", "file": true, "pontuacao": 7.3 },
+        { "value": "Plano diretor realizado nos ultimos dez anos", "file": true, "pontuacao": 5.3 },
+        { "value": "Plano diretor realizado nos ultimos quinze anos", "file": true, "pontuacao": 3.3 },
+        { "value": "Plano diretor realizado nos ultimos quinze anos", "file": true, "pontuacao": 0 }
+        ]},
+    "a4_2":{"cabecalho":"A.4.2 Atas das últimas seis reuniões do COMTUR",
+        "info":"info",
+        "codigo":"a4_2",
+        "descricaoanexo": "inserir atas das últimas seis reuniões do COMTUR",
+        "opcoes":[
+            { "value": "Sim", "file": true, "pontuacao": 1 },
+            { "value": "Não", "file": false, "pontuacao": 0 }
+        ]},
+    "c1":{"cabecalho":"C.1 COMTUR composto por partícipes de 1/3 da iniciativa pública e 2/3 da iniciativa privada",
+        "info":"Os conselhos municipais são ferramentas de participação ativa dos cidadãos no processo de elaboração de políticas públicas. O art. 29, XII da Constituição Federal determina a cooperação das associações representativas no planejamento municipal, demonstrando o papel fundamental a ser exercido pelos conselhos municipais. Os conselhos municipais são compostos por representantes da Prefeitura Municipal e da sociedade civil. O caráter permanente desses conselhos possibilita que a participação do cidadão efetivamente se converta na formulação, implementação e avaliação das políticas públicas municipais.",
+        "codigo":"c1_1", 
+        "descricaoanexo": "inserir o legislação do COMTUR",
+        "opcoes":[
+        { "value": "Sim", "file": true, "pontuacao": 2 },
+        { "value": "Não", "file": false, "pontuacao": 0.5 }
+        ]},
+    "c2":{"cabecalho":"C.2 A Estância esta inserida no Mapa Brasileiro do Turismo do Ministério do Turismo",
+        "info":"O Mapa Brasileiro do Turismo é um programa do Ministério do Turismo. É importante que as cidades estâncias estejam engajadas no desenvolvimento regional, inseridas no Mapa Brasileiro do Turismo por uma Instancia Regional de Turismo (IGR).",
+        "codigo":"c2", 
+        "descricaoanexo": "inserir o certificado do Mapa Brasileiro do Turismo",
+        "opcoes":[
+            { "value": "Sim", "file": true, "pontuacao": 1 },
+            { "value": "Não", "file": false, "pontuacao": 0 }
+        ]},
+    "c3":{"cabecalho":"C.3 Os últimos pleito apresentados tem contexto de participação de pleito regional?",
+        "info":"Considera-se que estâncias limítrofes possam apresentar pleitos de importância regional ou padronizados regionalmente com outras estâncias ou municípios de interesse turístico. Para isso, os pleitos devem ser integrados ou sequenciados em ações que complementam o turismo regional.",
+        "codigo":"c3", 
+        "descricaoanexo": "inserir o nome do pleito",
+        "opcoes":[
+        { "value": "Sim", "file": false, "pontuacao": 3 },
+        { "value": "Não", "file": false, "pontuacao": 0 }
+        ]},
+    "c4":{"cabecalho":"C.4 A estância apresenta incentivos e investimentos turísticos",
+        "info":"A capacidade de investimento e incentivos das estâncias para o fomento do turismo por meio de iniciativas privadas, parcerias, legislações municipais, entre outros. As estâncias não podem ficar focadas somente aos recursos do DADETUR, devem apresentar capacidade de investimento baseado na estruturação do turismo, como também leis municipais de incentivo a atividade.",
+        "codigo":"c4", 
+        "descricaoanexo": "leis, decreto, portaria, entre outros",
+        "opcoes":[
+            { "value": "Sim", "file": true, "pontuacao": 3 },
+            { "value": "Não", "file": false, "pontuacao": 0 }
+    ]},
+    "c5":{"cabecalho":"C.5 A estância participou de capacitação turística nos ultimos 2 anos?",
+        "info":"Os cursos de capacitação têm como base o efeito multiplicador para o trade turístico das estâncias. Cabe ao poder público oferecer cursos de acordo com sua demanda real.",
+        "codigo":"c5", 
+        "descricaoanexo": "certificação comprobatória",
+        "opcoes":[
+        { "value": "Sim - Mais de 10 cursos", "file": true, "pontuacao": 3 },
+        { "value": "Sim - Menos de 10 cursos", "file": false, "pontuacao": 2 },
+        { "value": "Não", "file": false, "pontuacao": 0 }
+        ]},
+    "c6":{"cabecalho":"C.6 A estância participou da capacitação de gestão de convênios realizado pela Secretaria de Estado de Turismo?",
+        "info":"A Secretaria de Turismo do Estado oferece capacitação de gestão do manual de convênios do DADETUR a cada dois anos para as estâncias e os MIT. Os cursos de capacitação devem ser realizados para os prefeitos, presidentes da câmara de vereadores, secretários municipais de turismo, gestores técnicos de convênios das prefeituras, membros do COMTUR e membros responsáveis por validação e acompanhamento dos convênios do Estado como requisito obrigatório do ranqueamento.",
+        "codigo":"c6", 
+        "descricaoanexo": "certificação comprobatória",
+        "opcoes":[
+            { "value": "Sim", "file": true, "pontuacao": 3 },
+            { "value": "Não", "file": false, "pontuacao": 0 }
+    ]},
+    "c7":{"cabecalho":"C.7 A estância possui programa de Turismo educacional?",
+        "info":"Os municípios devem apresentar programa de educação turística para efeito de sensibilização e conscientização do turismo. É importante que o programa de educação turística esteja inserido no sistema da legislação Estadual. Enfatiza-se que as crianças são multiplicadoras de conhecimento, sendo indispensável no percurso de uma conscientização turística um programa de educação turística nas estâncias.",
+        "codigo":"c7", 
+        "descricaoanexo": "certificaç~çao ou documentação comprobatória",
+        "opcoes":[
+        { "value": "Sim", "file": true, "pontuacao": 3 },
+        { "value": "Não", "file": false, "pontuacao": 0 }
+        ]},
+    "c8":{"cabecalho":"C.8 A estância possui programa de Marketing turístico",
+        "info":"É necessário que a estâncias realizem estratégias de marketing com promoção de divulgação embasada no crescimento da marca do turismo no Estado, além da difusão da publicidade dos atrativos. Destacam-se as ações de marketing e promoção devem ser contrapartida obrigatória das estâncias.",
+        "codigo":"c8", 
+        "descricaoanexo": "documento comprobatória (folder, plano de ação, material gráfico, mapas, entre outros)",
+        "opcoes":[
+            { "value": "Sim", "file": true, "pontuacao": 3.1 },
+            { "value": "Não", "file": false, "pontuacao": 0 }
+        ]},
+    "c9":{"cabecalho":"C.9 A estância possui pesquisa de satisfação dos pleitos nos últimos três anos?",
+        "info":"Destaca-se que a satisfação do gerenciamento da gestão dos recursos do DADETUR é indispensável perante a população, validando a frase de que o turismo só será bom para o turista quando primeiramente for bom para a comunidade. Ter dados sobre a satisfação do turismo perante o autóctone torna evidente a contemplação da realização positiva dos pleitos realizados com os recursos do DADETUR nas estâncias. Ressalta-se que a falta de dados sobre a atividade turística, principalmente perante o autóctone, pode interferir em processos de decisão, fundamental para a sustentabilidade e respeito em relação às relações interpessoais, intrínseca da atividade turística que causa impactos diretos em relação aos aspectos culturais, sociais, econômicos e ambientais.",
+        "codigo":"c9",
+        "descricaoanexo": "pesquisa completa",
+        "opcoes":[
+        { "value": "Sim", "file": true, "pontuacao": 3 },
+        { "value": "Não", "file": false, "pontuacao": 0 }
+        ]},
+    "pleitos":{
+        "situacao":{
+            "obra finalizada": 1,
+            "obra em andamento": 0.7,
+            "obra não iniciada": 0.3
+        },
+        "tipo":{
+            "Atrativo natural e/ou cultural":10.1,
+            "Infraestrutura turística": 8.1,
+            "Infraestrutura de apoio": 6.1,
+            "Infraestrutura de acesso": 4.1,
+            "Infraestrutura básica urbana": 2.1
+        }
+    }
+}

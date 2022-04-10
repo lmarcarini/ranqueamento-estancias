@@ -7,6 +7,7 @@ export default function PleitosListValidacao({
   return (
     <>
       <h5>Pleitos</h5>
+      {(!pleitos || pleitos.length === 0) && <p>Nenhum pleito cadastrado.</p>}
       {Object.entries(pleitos).map(([_, pleito], i) => (
         <div key={i} className="mb-2">
           <h6># {i + 1 + ": " + pleito.nome}</h6>

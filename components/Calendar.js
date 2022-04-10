@@ -4,21 +4,6 @@ import Card from "react-bootstrap/Card";
 import DataEvento from "./DataEvento";
 
 export default function Calendar({ datas }) {
-  // const [datas, setdatas] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchEventos = async () => {
-  //     let eventosRef = collection(db, "eventos");
-  //     const eventosSnap = await getDocs(eventosRef);
-  //     setdatas(
-  //       eventosSnap.docs
-  //         .map((doc) => doc.data())
-  //         .sort((a, b) => a.date.localeCompare(b.date))
-  //     );
-  //   };
-  //   fetchEventos();
-  // }, []);
-
   return (
     <Card>
       <Card.Body>
@@ -26,7 +11,7 @@ export default function Calendar({ datas }) {
 
         {datas ? (
           datas.map(({ date, nome }, i) => (
-            <DataEvento key={i} data={date}>
+            <DataEvento key={i} date={date}>
               {nome}
             </DataEvento>
           ))

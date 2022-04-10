@@ -1,6 +1,7 @@
 import Container from "react-bootstrap/Container";
 import pontuacao from "../scripts/pontuacao";
 import finalScore from "../scripts/finalScore";
+import { useEffect } from "react";
 
 export default function VisualizadorDados({ dados, final = false }) {
   return (
@@ -44,7 +45,7 @@ export default function VisualizadorDados({ dados, final = false }) {
         ))}
       <hr />
       <h5>Pleitos</h5>
-      {dados.pleitos ? (
+      {dados?.pleitos > 0 ? (
         <>
           {Object.entries(dados.pleitos).map(([id, pleito], i) => (
             <div key={id} className="mb-2">
@@ -70,7 +71,7 @@ export default function VisualizadorDados({ dados, final = false }) {
           ))}
         </>
       ) : (
-        <h6>Não foram incluídos nenhum pleito nesse cadastro.</h6>
+        <h6>Nenhum pleito cadastrado.</h6>
       )}
     </Container>
   );

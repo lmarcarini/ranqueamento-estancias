@@ -1,6 +1,7 @@
 [  {"cabecalho":"A.1 Estudo de demanda turística existente nos dois anos anteriores a apresentação dos dados",
-    "info":"info",
+    "info":"Estudo da demanda turística existente nos 2 (dois) anos anteriores à apresentação do dos dados, a ser realizado pela Prefeitura Municipal em convênio com órgão público estadual, federal, instituição de ensino superior ou entidade especializada. Para maiores informações no site https://www.turismo.sp.gov.br tem disponível o modelo para pesquisa de demanda.",
     "codigo":"a1", 
+    "descricaoanexo":"inserir o estudo de demanda",
     "opcoes":[
     { "value": "estudo atualizado dos ultimos dois anos realizado por equipe especializada", "file": true, "pontuacao": 8.3 },
     { "value": "estudo atualizado dos ultimos dois anos realizado por equipe da prefeitura", "file": true, "pontuacao": 6.3 },
@@ -11,8 +12,9 @@
     { "value": "não tem estudo de demanda turística", "file": false, "pontuacao": 0 }
   ]},
   {"cabecalho":"A.2 Inventário turísticos dos ATRATIVOS, EQUIPAMENTOS E INFRA-ESTRUTURA dos municípios - plataforma da Secretaria de Estado de Turismo",
-    "info":"info",
+    "info":"Inventário dos atrativos turísticos, dos equipamentos e serviços turísticos do município com suas respectivas localizações e vias de acesso, além do inventário da infraestrutura de apoio turístico. Para maiores informações sobre a plataforma do inventario turístico entrar em contato com Secretaria de Estado de Turismo de São Paulo.",
     "codigo":"a2", 
+    "descricaoanexo":"inserir o certificado de conclusão do preenchimento dos dados na plataforma",
     "opcoes":[
     { "value": "Preenchimento realizado e atualizado nos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo", "file": true, "pontuacao": 8.3 },
     { "value": "Preenchimento realizado anterior aos ultimos três anos na plataforma digital da Secretaria do Estado de Turismo", "file": true, "pontuacao": 4.3 }
