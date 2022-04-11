@@ -14,9 +14,9 @@ export default function DataEvento({ date, children }) {
     let [dia, mes, ano] = date.split("/");
     let data = new Date(ano, mes - 1, dia);
     let offset = hoje.getTime() - data.getTime();
-    if (offset < 0) return "antes";
     let week = 1000 * 60 * 60 * 24 * 7;
-    if (offset < week) return "urgente";
+    if (offset < -week) return "antes";
+    if (offset < 0) return "urgente";
     return "depois";
   }, [date]);
 

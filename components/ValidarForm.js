@@ -42,7 +42,6 @@ export default function ValidarForm({
     setDadosValidados({ ...dadosValidados, pleitos: pleitos });
   };
 
-  //TODO
   const handleSubmit = (e) => {
     e.preventDefault();
     let dadosAEnviar = { ...dados };
