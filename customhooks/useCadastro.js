@@ -1,6 +1,12 @@
 //custom hook to get data Cadastros from firebase
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "../Firebase/auth";
 
 export default function useCadastros() {
@@ -27,4 +33,24 @@ export function useCadastro(id) {
   }, [id]);
 
   return cadastro;
+}
+
+export function useCadastroState() {
+  const [cadastroState, setCadastroState] = useState(null);
+
+  useEffect(async () => {
+    let configuracaoRef = doc(db, "configuracao", "configuracao");
+    const querySnapshot = await getDoc(configuracaoRef);
+    let cadastroState = querySnapshot.data();
+    setCadastroState(cadastroState.cadastro);
+  }, []);
+
+  const handleChangeCadastroState = (e) => {
+    let newState = e.target.checked === true ? "aberto" : "fechado";
+    setCadastroState(newState);
+    let configuracaoRef = doc(db, "configuracao", "configuracao");
+    updateDoc(configuracaoRef, { cadastro: newState });
+  };
+
+  return [cadastroState, handleChangeCadastroState];
 }

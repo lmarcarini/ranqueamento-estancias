@@ -10,6 +10,7 @@ export default function ListaContas({ contas = {}, handleSelect }) {
             <th>Nome</th>
             <th>Email</th>
             <th>Tipo</th>
+            <th>Município</th>
           </tr>
         </thead>
         <tbody>
@@ -18,6 +19,7 @@ export default function ListaContas({ contas = {}, handleSelect }) {
               <td>{conta.nome}</td>
               <td>{conta.email}</td>
               <td>{conta.tipo}</td>
+              <td>{conta.municipio}</td>
             </tr>
           ))}
         </tbody>
