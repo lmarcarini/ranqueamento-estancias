@@ -13,6 +13,7 @@ export default function SectionB({ id, dadosAnteriores }) {
   };
 
   useEffect(() => {
+    if (!dadosAnteriores) return;
     setpleitos(
       Object.entries(dadosAnteriores.pleitos).map(([key, pleito], i) => ({
         ...pleito,
@@ -20,7 +21,7 @@ export default function SectionB({ id, dadosAnteriores }) {
       }))
     );
     setnPleitos(dadosAnteriores.pleitos.length || 0);
-  }, [dadosAnteriores.pleitos]);
+  }, [dadosAnteriores]);
 
   const excluir = (e) => {
     let id = e.target.id;

@@ -1,4 +1,4 @@
-import gabarito from "../scripts/respostas.json";
+import gabarito from "./respostas.json";
 
 const scoreRespostas = (gabarito, perguntas) =>
   gabarito.reduce((acc, [key, respostas]) => {
@@ -19,6 +19,7 @@ const scorePleitos = (gabarito, pleitos) =>
   );
 
 export default function pontuacao(doc) {
+  if (!doc.perguntas) return 0;
   let score = scoreRespostas(Object.entries(gabarito.respostas), doc.perguntas);
   score += scorePleitos(gabarito, doc.pleitos);
   return score.toFixed(1);

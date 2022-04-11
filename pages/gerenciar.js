@@ -3,13 +3,20 @@ import { useAuth } from "../contexts/AuthenticationContext";
 import { useRouter } from "next/router";
 import { useCadastroState } from "../customhooks/useCadastro";
 import { useEffect } from "react";
+import useDivulgar from "../customhooks/useDivulgar";
 
 export default function Gerenciar() {
   const { authUser, loading } = useAuth();
   const { router } = useRouter();
   const [cadastroState, handleChangeCadastroState] = useCadastroState();
+  const [divulgar, divulgando] = useDivulgar();
 
   const toogleCadastroAberto = (e) => handleChangeCadastroState(e);
+
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    divulgar();
+  };
 
   //redireciona caso não logado
   useEffect(() => {
@@ -31,8 +38,9 @@ export default function Gerenciar() {
           />
         )}
         <Button
-          disabled={cadastroState === "fechado"}
+          disabled={cadastroState === "aberto" || divulgando}
           tooltip="É necessário que o cadastro esteja fechado para realizar essa ação"
+          onClick={handleOnClick}
         >
           Divulgar Validação
         </Button>

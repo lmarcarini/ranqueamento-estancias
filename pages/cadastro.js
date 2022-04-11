@@ -17,6 +17,7 @@ export default function Cadastro() {
   const [loadingData, setLoadingData] = useState(true);
   const { ciclo } = useCiclo();
 
+  console.log(ciclo);
   useEffect(() => {
     const abortController = new AbortController();
     if (!authUser) return false;
@@ -49,12 +50,12 @@ export default function Cadastro() {
   return (
     <Container className="mt-3">
       {cadastrando && <FormContainer dadosAnteriores={dadosEnviados} />}
-      {ciclo === "cadastroAberto" && !cadastrando && (
+      {ciclo === "aberto" && !cadastrando && (
         <Button className="mt-3" onClick={handleStartForm}>
           {dadosEnviados ? "Alterar dados cadastrados" : "Cadastrar dados"}
         </Button>
       )}
-      {ciclo === "cadastroAberto" && !cadastrando ? (
+      {ciclo === "aberto" && !cadastrando ? (
         dadosEnviados && !loadingData ? (
           <VisualizadorDados dados={dadosEnviados} />
         ) : (
