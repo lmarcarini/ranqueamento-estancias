@@ -46,7 +46,7 @@
         { "value": "Não", "file": false, "pontuacao": 0 }
         ]},
     "a4_1":{"cabecalho":"A.4.1 Plano diretor de turismo",
-        "info":"Atas das 6 (seis) últimas reuniões do Conselho Municipal de Turismo, devidamente registradas em cartório ou publicadas em imprensa oficial. As atas devem conter assinatura de todos os participantes ou folha de registro dos participantes.",
+        "info":"Cópia do Plano Diretor Municipal de Turismo. Para maiores informações no site https://www.turismo.sp.gov.br tem disponível a resolução ST 14/2016 sobre Plano Diretor de Turismo.",
         "codigo":"a4_1",
         "descricaoanexo": "inserir atas das 6 (seis) últimas reuniões do Conselho Municipal de Turismo",
         "opcoes":[
@@ -56,7 +56,7 @@
         { "value": "Plano diretor realizado nos ultimos quinze anos", "file": true, "pontuacao": 0 }
         ]},
     "a4_2":{"cabecalho":"A.4.2 Atas das últimas seis reuniões do COMTUR",
-        "info":"info",
+        "info":"Atas das 6 (seis) últimas reuniões do Conselho Municipal de Turismo, devidamente registradas em cartório ou publicadas em imprensa oficial. As atas devem conter assinatura de todos os participantes ou folha de registro dos participantes.",
         "codigo":"a4_2",
         "descricaoanexo": "inserir atas das últimas seis reuniões do COMTUR",
         "opcoes":[
