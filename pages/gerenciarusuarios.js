@@ -48,7 +48,7 @@ export default function GerenciarUsuarios() {
 
   //handle redirects
   useEffect(() => {
-    if (!authUser && !loading) router.push("/");
+    if (!authUser && !loading && router) router.push("/");
   }, [authUser, loading, router]);
   if (loading) return <div>Carregando...</div>;
   if (!authUser || authUser.tipo !== "admin") return <div>Não autorizado</div>;

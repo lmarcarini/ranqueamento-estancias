@@ -45,7 +45,7 @@ export default function Gerenciar() {
 
   //redireciona caso não logado
   useEffect(() => {
-    if (!authUser && !loading) router.push("/");
+    if (!authUser && !loading && router) router.push("/");
   }, [authUser, loading, router]);
   if (loading) return <div>Carregando...</div>;
   if (!authUser && !loading) return <div>Não autorizado</div>;
