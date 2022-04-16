@@ -6,6 +6,7 @@ import {
   getDoc,
   updateDoc,
   doc,
+  onSnapshot,
 } from "firebase/firestore";
 import { db } from "../Firebase/auth";
 
@@ -38,11 +39,15 @@ export function useCadastro(id) {
 export function useCadastroState() {
   const [cadastroState, setCadastroState] = useState(null);
 
-  useEffect(async () => {
-    let configuracaoRef = doc(db, "configuracao", "configuracao");
-    const querySnapshot = await getDoc(configuracaoRef);
-    let cadastroState = querySnapshot.data();
+  const unsub = onSnapshot(doc(db, "configuracao", "configuracao"), (doc) => {
+    let cadastroState = doc.data();
     setCadastroState(cadastroState.cadastro);
+  });
+
+  useEffect(() => {
+    return () => {
+      unsub();
+    };
   }, []);
 
   const handleChangeCadastroState = (e) => {
