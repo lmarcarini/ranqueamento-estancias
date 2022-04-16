@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 
 const Ajuda = () => {
   return (
-    <Container className="mt-3">
+    <Container className="mt-3 mb-3">
       <Button className="mb-3">Baixar manual de apoio do software</Button>
       <p>
         O estado de São Paulo tem 645 municípios, dos quais apenas 70 cidades
@@ -22,14 +22,91 @@ const Ajuda = () => {
       </p>
       <p>
         Assim, o ranqueamento das estâncias turísticas é baseado em três
-        categorias:
+        categorias, na qual a somatória de avaliação poderá ser composta por uma
+        matriz de avaliação e de pontuação para uma hierarquização das
+        estâncias, compreendendo os critérios de:
       </p>
       <ol type="A">
-        <li> Atendimento a legislação n° 1.261 de 29 de abril de 2015; </li>
-        <li> Cumprimento de requisitos; e,</li>
-        <li> Realização de pleitos com destinação turística.</li>
+        <li>
+          <b>Atendimento a legislação</b> n° 1.261 de 29 de abril de 2015, que
+          enfatiza:
+          <ul>
+            <li>
+              Estudo de demanda turística existente nos dois anos anteriores a
+              apresentação dos dados;
+            </li>
+            <li>Inventário turísticos dos atrativos dos municípios;</li>
+            <li>Inventário do equipamentos e serviços turísticos;</li>
+            <li>Inventário da infraestrutura de apoio turístico;</li>
+            <li>
+              Certidões emitidas que comprovem água potável sistema de coleta e
+              tratamento de esgotos sanitários e gestão de resíduos sólidos
+            </li>
+            <li>
+              Cópia do plano diretor de turismo com ata das últimas seis
+              reuniões do COMTUR
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Pleitos indutores de turismo</b>: que caracteriza pleitos
+          direcionados a base escalonada de:
+          <ul>
+            <li>Atrativos naturais</li>
+            <li>Atrativos culturais</li>
+            <li>Infraestrutura turística </li>
+            <li>Infraestrutura de apoio</li>
+            <li>Infraestrutura de acesso</li>
+            <li>Infraestrutura básica urbana</li>
+          </ul>
+          A figura ilustra o modelo escalonado de categorias de pleitos
+          indutores do turismo:
+          <Image
+            src="categorias-pleitos.png"
+            layout="responsive"
+            height="1373"
+            width="2174"
+          />
+        </li>
+        <li>
+          <b>Conjunto de requisitos</b>: que enfatiza a necessidade de:
+          <ul>
+            <li>Avaliação dos pleitos</li>
+            <li>Participação no turismo regional</li>
+            <li>Pleito regional</li>
+            <li>Incentivos e investimentos turísticos</li>
+            <li>Capacitação turística</li>
+            <li>Gestão de convênios</li>
+            <li>Programa de Turismo educacional</li>
+            <li>Marketing turístico</li>
+            <li>Pesquisa de satisfação dos pleitos</li>
+            <li>
+              <i>
+                Histórico do município no DADETUR – requisito restrito somente a
+                Secretaria de Turismo do Estado de São Paulo
+              </i>
+            </li>
+          </ul>
+        </li>
       </ol>
-      <p>Conforme ilustra a figura a seguir:</p>
+      <p>
+        Considera-se que a estância que conseguir compor os melhores atributos
+        do modelo estará não só garantindo a sua permanência na categoria das
+        estâncias, mas também estará conseguindo melhor fomentar o turismo na
+        concepção de uma análise metodológica conceitual do termo turismo,
+        pautado no desenvolvimento e crescimento da atividade.
+      </p>
+
+      <p>
+        A figura a seguir ilustra o modelo de critérios para o regulamento do
+        ranqueamento das estâncias turísticas.
+      </p>
+      <Image
+        src="tripe-ranqueamento.png"
+        layout="responsive"
+        height="1301"
+        width="2425"
+      />
       <p>
         De acordo com os dados preenchidos e verificados pela Secretaria
         Estadual de Turismo, será dada uma pontuação para cada município. Os
@@ -40,12 +117,6 @@ const Ajuda = () => {
         fortalecendo o crescimento do turismo de maneira indutora na
         conceituação teórica do desenvolvimento do setor.
       </p>
-      <Image
-        src="tripe-ranqueamento.png"
-        layout="responsive"
-        height="1301"
-        width="2425"
-      />
       <p>
         <i>
           Para maiores informações entrar em contato com a Secretaria de Turismo
