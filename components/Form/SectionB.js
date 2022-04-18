@@ -66,6 +66,8 @@ export default function SectionB({ id, dadosAnteriores }) {
               id="valor"
               name={"pleito_valor_" + i}
               defaultValue={valor}
+              step="0.01"
+              min="0"
               required
             ></Form.Control>
             <Form.Label>

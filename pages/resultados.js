@@ -5,10 +5,11 @@ import VisualizadorDados from "../components/VisualizadorDados";
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthenticationContext";
 import useResultados from "../customhooks/useResultados";
+import { useRouter } from "next/router";
 
 export default function Resultados() {
   const { authUser, loading } = useAuth();
-
+  const router = useRouter();
   const { anos, dadosAnteriores } = useResultados(authUser?.municipio);
   const [anoSelecionado, setAnoSelecionado] = useState(null);
   const selecaoAno = (e) => {
@@ -17,7 +18,8 @@ export default function Resultados() {
   };
 
   useEffect(() => {
-    if (!authUser && !loading && router) router.push("/");
+    if (!authUser && !loading && typeof router !== "undefined")
+      router.push("/");
   }, [authUser, loading]);
   if (loading) return <div>Carregando...</div>;
   if (!authUser && !loading) return <div>Não autorizado</div>;
