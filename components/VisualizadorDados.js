@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 import pontuacao from "../scripts/pontuacao";
-import finalScore from "../scripts/finalScore";
+import { pontuacaoFinal } from "../scripts/finalScore";
 import { useEffect } from "react";
 
 export default function VisualizadorDados({ dados, final = false }) {
@@ -11,7 +11,7 @@ export default function VisualizadorDados({ dados, final = false }) {
       <h6> Preenchido em: {dados.data}</h6>
       <h6> Preenchido por: {dados.funcionario}</h6>
       {final ? (
-        <h6>Pontuação: {finalScore(dados)}</h6>
+        <h6>Pontuação: {dados.pontuacao}</h6>
       ) : (
         <h6>Pontuação prévia: {pontuacao(dados)}</h6>
       )}

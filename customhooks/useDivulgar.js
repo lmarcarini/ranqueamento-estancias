@@ -1,7 +1,7 @@
 import { db } from "../Firebase/auth";
 import { collection, getDocs, writeBatch, doc } from "firebase/firestore";
 import { useState } from "react";
-import pontuacao from "../scripts/pontuacao";
+import { pontuacaoFinal } from "../scripts/finalScore";
 import perguntas from "../scripts/perguntas";
 
 const useDivulgar = () => {
@@ -13,7 +13,7 @@ const useDivulgar = () => {
     return docs.docs.map((doc) => {
       let data = doc.data();
       data.id = doc.id;
-      data.pontuacao = pontuacao(data);
+      data.pontuacao = pontuacaoFinal(data);
       return data;
     });
   };
@@ -22,7 +22,8 @@ const useDivulgar = () => {
   const transaction = async (
     originCollection,
     destinationCollection,
-    array
+    array,
+    rankArray
   ) => {
     const batch = writeBatch(db);
     array.forEach((data) => {
@@ -34,7 +35,42 @@ const useDivulgar = () => {
     array.forEach((data) => {
       batch.delete(doc(db, originCollection, data.id));
     });
-    const sorted = array.sort((a, b) => {
+    const ranqueamentoDoc = doc(db, "ranqueamento", perguntas.ano.toString());
+    const ranqueamentoYear = { ano: perguntas.ano };
+    batch.set(ranqueamentoDoc, ranqueamentoYear);
+    rankArray.forEach((data) => {
+      console.log(data);
+      batch.set(
+        doc(
+          db,
+          "ranqueamento",
+          perguntas.ano.toString(),
+          "municipios",
+          data.nome
+        ),
+        data
+      );
+    });
+    return await batch.commit();
+  };
+
+  const fillWithDados = (dados, municipios) => {
+    const array = [...dados];
+    municipios.forEach((municipio) => {
+      if (!dados.some((data) => data.municipio === municipio.nome)) {
+        array.push({
+          municipio: municipio.nome,
+          ano: perguntas.ano,
+          id: municipio.nome + "_" + perguntas.ano,
+          pontuacao: 0,
+        });
+      }
+    });
+    return array;
+  };
+
+  const criarRanqueamento = (dados) => {
+    const sorted = dados.sort((a, b) => {
       a.pontuacao - b.pontuacao;
     });
     const ranqueamentoArray = sorted.map((data, i) => {
@@ -45,30 +81,29 @@ const useDivulgar = () => {
         posicao: i + 1,
       };
     });
-    const ranqueamentoDoc = doc(db, "ranqueamento", perguntas.ano.toString());
-    const ranqueamentoYear = { ano: perguntas.ano };
-    batch.set(ranqueamentoDoc, ranqueamentoYear);
-    ranqueamentoArray.forEach((data) => {
-      batch.set(
-        doc(
-          db,
-          "ranqueamento",
-          data.ano.toString(),
-          "municipios",
-          data.municipio
-        ),
-        data
-      );
-    });
-    return await batch.commit();
+    return ranqueamentoArray;
   };
 
   const divulgar = async () => {
     setDivulgando(true);
-    const dados = await getAllDocs("dadosCadastrados");
-    await transaction("dadosCadastrados", "cadastrosAnteriores", dados);
+    try {
+      const dados = await getAllDocs("dadosCadastrados");
+      console.log(dados);
+      const municipios = await getAllDocs("municipios");
+      let dadosComTodos = fillWithDados(dados, municipios);
+      console.log(criarRanqueamento(dadosComTodos));
+      await transaction(
+        "dadosCadastrados",
+        "cadastrosAnteriores",
+        dados,
+        criarRanqueamento(dadosComTodos)
+      );
+      alert("Divulgação realizada com sucesso!");
+    } catch (error) {
+      console.log(error);
+      alert("Ocorreu um erro durante o envio!");
+    }
     setDivulgando(false);
-    alert("Divulgação realizada com sucesso!");
   };
 
   return [divulgar, divulgando];

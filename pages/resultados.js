@@ -17,7 +17,7 @@ export default function Resultados() {
   };
 
   useEffect(() => {
-    if (!authUser && !loading) router.push("/");
+    if (!authUser && !loading && router) router.push("/");
   }, [authUser, loading]);
   if (loading) return <div>Carregando...</div>;
   if (!authUser && !loading) return <div>Não autorizado</div>;

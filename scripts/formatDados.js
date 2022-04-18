@@ -1,11 +1,10 @@
 //format data from form to be read by score engine
-import gabarito from "./respostas";
-import perguntas from "./perguntas";
+import gabarito from "./perguntas";
 
 export const formatDados = (form, authUser) => {
   const data = Object.fromEntries(new FormData(form).entries());
   return {
-    ano: perguntas.ano,
+    ano: gabarito.ano,
     municipio: authUser.municipio,
     funcionario: authUser.nome,
     data: new Date().toLocaleString("pt-BR"),
@@ -13,7 +12,7 @@ export const formatDados = (form, authUser) => {
       if (codigo[0] === "a" || codigo[0] === "c")
         acc[codigo] = {
           resposta: resposta,
-          cabecalho: perguntas[codigo].cabecalho,
+          cabecalho: gabarito.perguntas[codigo].cabecalho,
         };
       return acc;
     }, {}),

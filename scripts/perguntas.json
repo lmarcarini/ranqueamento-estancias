@@ -1,5 +1,6 @@
 {
     "ano":2022,
+    "perguntas":{
     "a1":{"cabecalho":"A.1 Estudo de demanda turística existente nos dois anos anteriores a apresentação dos dados",
         "info":"Estudo da demanda turística existente nos 2 (dois) anos anteriores à apresentação do dos dados, a ser realizado pela Prefeitura Municipal em convênio com órgão público estadual, federal, instituição de ensino superior ou entidade especializada. Para maiores informações no site https://www.turismo.sp.gov.br tem disponível o modelo para pesquisa de demanda.",
         "codigo":"a1", 
@@ -135,7 +136,7 @@
         "opcoes":[
         { "value": "Sim", "file": true, "pontuacao": 3 },
         { "value": "Não", "file": false, "pontuacao": 0 }
-        ]},
+        ]}},
     "pleitos":{
         "situacao":{
             "obra finalizada": 1,

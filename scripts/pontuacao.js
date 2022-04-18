@@ -1,9 +1,11 @@
-import gabarito from "./respostas.json";
+import gabarito from "./perguntas.json";
 
 const scoreRespostas = (gabarito, perguntas) =>
   gabarito.reduce((acc, [key, respostas]) => {
-    let resposta = perguntas[key]?.resposta;
-    return acc + (respostas[resposta] || 0);
+    let resposta = respostas.opcoes.find(
+      (reference) => reference.value === perguntas[key]?.resposta
+    );
+    return acc + (resposta?.pontuacao || 0);
   }, 0);
 
 const scorePleitos = (gabarito, pleitos) =>
@@ -20,7 +22,7 @@ const scorePleitos = (gabarito, pleitos) =>
 
 export default function pontuacao(doc) {
   if (!doc.perguntas) return 0;
-  let score = scoreRespostas(Object.entries(gabarito.respostas), doc.perguntas);
+  let score = scoreRespostas(Object.entries(gabarito.perguntas), doc.perguntas);
   score += scorePleitos(gabarito, doc.pleitos);
   return score.toFixed(1);
 }

@@ -1,14 +1,14 @@
 import PerguntaForm from "./PerguntaForm.js";
-import perguntas from "../../scripts/perguntas.json";
+import gabarito from "../../scripts/perguntas.json";
 
 export default function SectionA({ id, dadosAnteriores }) {
   const fillPergunta = (codigo) => (
     <PerguntaForm
-      cabecalho={perguntas[codigo].cabecalho}
-      info={perguntas[codigo].info}
+      cabecalho={gabarito.perguntas[codigo].cabecalho}
+      info={gabarito.perguntas[codigo].info}
       codigo={codigo}
-      opcoes={perguntas[codigo].opcoes}
-      descricaoanexo={perguntas[codigo].descricaoanexo}
+      opcoes={gabarito.perguntas[codigo].opcoes}
+      descricaoanexo={gabarito.perguntas[codigo].descricaoanexo}
       resposta={
         dadosAnteriores?.perguntas &&
         dadosAnteriores?.perguntas[codigo]?.resposta

@@ -39,6 +39,7 @@ export default function Autenticacao() {
             type="email"
             placeholder="Email"
             name="email"
+            autoComplete="email"
             required
           ></Form.Control>
         </Form.Group>
@@ -48,6 +49,7 @@ export default function Autenticacao() {
             type="password"
             placeholder="senha"
             name="senha"
+            autoComplete="current-password"
             required
           ></Form.Control>
         </Form.Group>

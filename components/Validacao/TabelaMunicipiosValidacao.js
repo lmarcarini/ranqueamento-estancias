@@ -1,4 +1,6 @@
 import Table from "react-bootstrap/Table";
+import pontuacao from "../../scripts/pontuacao";
+import { pontuacaoFinal } from "../../scripts/finalScore";
 
 export default function TabelaMunicipiosValidacao({
   listaMunicipios,
@@ -19,16 +21,14 @@ export default function TabelaMunicipiosValidacao({
         </tr>
       </thead>
       <tbody>
-        {listaMunicipios.map(
-          ({ municipio, pontuacao, pontuacaoValidada = "-" }, i) => (
-            <tr key={i} onClick={(_) => handleClick(municipio)}>
-              <td>{i + 1}</td>
-              <td>{municipio}</td>
-              <td>{pontuacao}</td>
-              <td>{pontuacaoValidada}</td>
-            </tr>
-          )
-        )}
+        {listaMunicipios.map((dados, i) => (
+          <tr key={i} onClick={(_) => handleClick(dados.municipio)}>
+            <td>{i + 1}</td>
+            <td>{dados.municipio}</td>
+            <td>{pontuacao(dados) || "0"}</td>
+            <td>{pontuacaoFinal(dados) || "-"}</td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );

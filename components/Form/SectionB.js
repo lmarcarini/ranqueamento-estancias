@@ -186,11 +186,11 @@ export default function SectionB({ id, dadosAnteriores }) {
               <option value="Infraestrutura de apoio">
                 Infraestrutura de apoio
               </option>
-              <option value="Infraestrutura de apoio">
-                Infraestrutura de apoio
+              <option value="Infraestrutura de acesso">
+                Infraestrutura de acesso
               </option>
-              <option value="Infraestrutura de apoio">
-                Infraestrutura de apoio
+              <option value="Infraestrutura básica urbana">
+                Infraestrutura básica urbana
               </option>
             </Form.Select>
             <Button onClick={excluir} id={i} className="mt-2" variant="danger">
