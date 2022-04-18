@@ -3,9 +3,18 @@ import Image from "next/image";
 import { Button } from "react-bootstrap";
 
 const Ajuda = () => {
+  const handleOpenPDF = () => {
+    window.open(
+      "/Manual de Utilização do Sistema de Ranqueamento de Estâncias do Estado de São Paulo.pdf",
+      "_blank"
+    );
+  };
+
   return (
     <Container className="mt-3 mb-3">
-      <Button className="mb-3">Baixar manual de apoio do software</Button>
+      <Button className="mb-3" onClick={handleOpenPDF}>
+        Baixar manual de apoio do software
+      </Button>
       <p>
         O estado de São Paulo tem 645 municípios, dos quais apenas 70 cidades
         são consideradas estâncias e 140 são considerados Municípios de
