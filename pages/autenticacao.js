@@ -82,8 +82,9 @@ export default function Autenticacao() {
         </Form>
       </Modal>
       <p className="mt-3">
-        Para criar uma nova conta, entre em contato com a secretaria de turismo
-        pelo email: turismo@sp.gov.br
+        Para criar uma nova conta, entre em contato com o setor de ranqueamento
+        da Secretaria de Estadual de Turismo do Estado de São Paulo pelo email:{" "}
+        <a href="mailto:turismo@sp.gov.br">turismo@sp.gov.br</a>
       </p>
     </Container>
   );
