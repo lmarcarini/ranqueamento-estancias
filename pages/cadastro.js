@@ -17,7 +17,6 @@ export default function Cadastro() {
   const [loadingData, setLoadingData] = useState(true);
   const { ciclo } = useCiclo();
 
-  console.log(ciclo);
   useEffect(() => {
     const abortController = new AbortController();
     if (!authUser) return false;
