@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 
 export default function TabelaMunicipios({ listaMunicipios }) {
   //onclick sort by Posição
   const [municipios, setMunicipios] = useState(listaMunicipios);
   const [ordem, setOrdem] = useState("");
+
+  useEffect(() => {
+    setMunicipios(listaMunicipios);
+  }, [listaMunicipios]);
 
   const sortByPosicao = () => {
     if (ordem === "asc") {
