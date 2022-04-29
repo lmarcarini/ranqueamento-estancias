@@ -70,7 +70,7 @@ function CadastroForm({ dadosAnteriores }) {
         <NavBar fixed="bottom" bg="dark" variant="dark">
           <Container>
             <Form.Label className="lead" style={{ color: "white" }}>
-              Pontuação prévia: {score}/100
+              Pontuação prévia: {score}/90.7
             </Form.Label>
             <ConfirmacaodeEnvio
               handleClose={() => setshowConfirmation(false)}
